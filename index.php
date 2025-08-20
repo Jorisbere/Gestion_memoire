@@ -229,7 +229,7 @@ form button:hover {
 
   <div class="buttons">
     <a href="register.php" class="button">📝 S’inscrire</a>
-    <a href="login.php" class="button">📊 Découvrir le dashboard</a>
+    <a href="login.php" class="button">📊 Se connecter</a>
   </div>
 </main>
 
