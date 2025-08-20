@@ -1,0 +1,6 @@
+# .gitignore
+/config/db.php
+/vendor/
+/node_modules/
+/*.log
+*.env
