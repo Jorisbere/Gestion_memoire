@@ -283,7 +283,7 @@ button:hover {
       <button type="submit">Envoyer la demande</button>
     </div>
     <div class="back-button">
-    <a href="../dashboard.php">← Retour au tableau de bord</a>
+    <a href="../accueil.php">← Retour au tableau de bord</a>
   </div>
 
     <?php if ($success): ?>

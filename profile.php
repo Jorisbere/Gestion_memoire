@@ -21,7 +21,7 @@ if (!$user) {
 }
 
 $username = htmlspecialchars($user['username']);
-$email = htmlspecialchars($user['email']);
+$email = htmlspecialchars($user['email'] ?? '');
 $location = htmlspecialchars($user['location'] ?? 'Non renseignée');
 $bio = htmlspecialchars($user['bio'] ?? 'Aucune biographie');
 $birthdate = $user['birthdate'] ? date('d/m/Y', strtotime($user['birthdate'])) : 'Non renseignée';

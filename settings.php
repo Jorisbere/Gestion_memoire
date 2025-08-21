@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$user_id = (int) $_SESSION['user_id'];
 
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,37 +16,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location = $_POST['location'] ?? '';
     $bio = $_POST['bio'] ?? '';
     $birthdate = $_POST['birthdate'] ?? null;
+    $new_password = $_POST['new_password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
+    $password_hash = null;
+
+    // Vérification du mot de passe
+    if (!empty($new_password)) {
+        if ($new_password === $confirm_password) {
+            $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+        } else {
+            die("⚠️ Les mots de passe ne correspondent pas.");
+        }
+    }
 
     // Gestion de l'image
     if (!empty($_FILES['avatar']['name'])) {
-    $target_dir = "uploads/";
-    $filename = basename($_FILES["avatar"]["name"]);
-    $target_file = $target_dir . time() . "_" . $filename;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $target_dir = "uploads/";
+        $filename = basename($_FILES["avatar"]["name"]);
+        $target_file = $target_dir . time() . "_" . $filename;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
 
-    $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-    if (in_array($imageFileType, $allowed_types)) {
-        if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
-            $avatar_path = $target_file;
+        if (in_array($imageFileType, $allowed_types)) {
+            if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                $avatar_path = $target_file;
+            }
         }
     }
-}
 
+    // Construction dynamique de la requête SQL
+    $fields = "username = ?, email = ?, location = ?, bio = ?, birthdate = ?";
+    $params = [$username, $email, $location, $bio, $birthdate];
+    $types = "sssss";
 
-    // Mise à jour SQL
-    $sql = "UPDATE users SET username = ?, email = ?, location = ?, bio = ?, birthdate = ?" . (isset($avatar_path) ? ", avatar = ?" : "") . " WHERE id = ?";
+    if (isset($avatar_path)) {
+        $fields .= ", avatar = ?";
+        $params[] = $avatar_path;
+        $types .= "s";
+    }
+
+    if ($password_hash) {
+        $fields .= ", password = ?";
+        $params[] = $password_hash;
+        $types .= "s";
+    }
+
+    $fields .= " WHERE id = ?";
+    $params[] = $user_id;
+    $types .= "i";
+
+    $sql = "UPDATE users SET $fields";
     $stmt = $conn->prepare($sql);
-
-   if (isset($avatar_path)) {
-    $sql = "UPDATE users SET username = ?, email = ?, location = ?, bio = ?, birthdate = ?, avatar = ? WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssi", $username, $email, $location, $bio, $birthdate, $avatar_path, $user_id);
-} else {
-    $sql = "UPDATE users SET username = ?, email = ?, location = ?, bio = ?, birthdate = ? WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $username, $email, $location, $bio, $birthdate, $user_id);
-}
-
+    $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $stmt->close();
 
@@ -62,7 +83,6 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -84,16 +104,15 @@ $stmt->close();
 </header>
 
 <main class="settings-container">
-  <h1>Modifier mon profil</h1>
   <form method="POST" enctype="multipart/form-data" class="form-profile">
     <div class="form-group">
       <label for="username">👤 Nom d'utilisateur :</label>
-      <input type="text" name="username" id="username" value="<?= htmlspecialchars($user['username']) ?>" required />
+      <input type="text" name="username" id="username" value="<?= htmlspecialchars($user['username'] ?? '') ?>" required />
     </div>
 
     <div class="form-group">
       <label for="email">📧 Email :</label>
-      <input type="email" name="email" id="email" value="<?= htmlspecialchars($user['email']) ?>" required />
+      <input type="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required />
     </div>
 
     <div class="form-group">
@@ -112,7 +131,7 @@ $stmt->close();
     </div>
 
     <div class="form-group">
-      <label for="avatar">🖼️ Photo de profil (format jpg, jpeg, png, gif):</label>
+      <label for="avatar">🖼️ Photo de profil :</label>
       <input type="file" name="avatar" id="avatar" accept="image/*" />
       <?php if (!empty($user['avatar'])): ?>
         <div class="avatar-preview">
@@ -120,12 +139,21 @@ $stmt->close();
         </div>
       <?php endif; ?>
     </div>
-    
+
+    <div class="form-group">
+      <label for="new_password">🔒 Nouveau mot de passe :</label>
+      <input type="password" name="new_password" id="new_password" placeholder="Laisser vide pour ne pas changer" />
+    </div>
+
+    <div class="form-group">
+      <label for="confirm_password">🔁 Confirmer le mot de passe :</label>
+      <input type="password" name="confirm_password" id="confirm_password" />
+    </div>
+
     <button type="submit" class="btn-save">💾 Enregistrer les modifications</button>
     <a href="javascript:history.back()" class="btn-back">← Retour</a>
   </form>
 </main>
-
 
 </body>
 </html>
