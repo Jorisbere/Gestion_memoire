@@ -105,6 +105,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
       display: flex;
       flex-direction: column;
       gap: 14px;
+      border-radius: 12px;
     }
     .brand {
       display: flex;
@@ -365,7 +366,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
       <a href="forms/protocoles_consultation.php">📄 Consultation Protocole</a>
       <a href="forms/programmer_soutenance.php">🏢 Programmer Soutenance</a>
       <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
-      <a href="forms/attribuer_dm.php">📊 Ajouter DM</a>
+      <a href="forms/attribuer_dm.php">👤 Ajouter DM</a>
       <a href="logout.php">🚪 Déconnexion</a>
     </nav>
   </aside>

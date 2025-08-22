@@ -393,77 +393,76 @@ function getRejectedCount($conn, $table, $encadrant) {
 
 
   <div class="recent-actions">
-      <h3>🕒 Dernières actions</h3>
-      <ul style="list-style:none; padding-left:0;">
-        <?php
-        $historique = [];
+  <h3>🕒 Dernières actions</h3>
+  <div style="max-height:300px; overflow-y:auto; padding-right:5px;">
+    <ul style="list-style:none; padding-left:0; margin:0;">
+      <?php
+      $historique = [];
 
-        $sql = "
-          SELECT 
-    u.username AS etudiant,
-    m.encadrant,
-    'Mémoire' AS type_demande,
-    m.etat_validation,
-    m.date_depot AS date_action
-FROM memoires m
-JOIN users u ON m.user_id = u.id
-WHERE m.encadrant = ?
+      $sql = "
+        SELECT 
+          u.username AS etudiant,
+          m.encadrant,
+          'Mémoire' AS type_demande,
+          m.etat_validation,
+          m.date_depot AS date_action
+        FROM memoires m
+        JOIN users u ON m.user_id = u.id
+        WHERE m.encadrant = ?
 
-UNION
+        UNION
 
-SELECT 
-    u.username AS etudiant,
-    d.encadrant,
-    'Soutenance' AS type_demande,
-    d.etat_validation,
-    d.date_demande AS date_action
-FROM demandes_soutenance d
-JOIN users u ON d.user_id = u.id
-WHERE d.encadrant = ?
+        SELECT 
+          u.username AS etudiant,
+          d.encadrant,
+          'Soutenance' AS type_demande,
+          d.etat_validation,
+          d.date_demande AS date_action
+        FROM demandes_soutenance d
+        JOIN users u ON d.user_id = u.id
+        WHERE d.encadrant = ?
 
-ORDER BY date_action DESC
-LIMIT 5
+        ORDER BY date_action DESC
+        LIMIT 5
+      ";
 
-        ";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ss", $dm_nom, $dm_nom);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      while ($row = $result->fetch_assoc()) {
+        $type = strtolower($row['type_demande'] ?? '');
+        $etat = strtolower($row['etat_validation'] ?? '');
+        $icon = $type === 'mémoire' ? '📘' : '📄';
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $dm_nom, $dm_nom);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-  $type = strtolower($row['type_demande'] ?? '');
-  $etat = strtolower($row['etat_validation'] ?? '');
-  $icon = $type === 'mémoire' ? '📘' : '📄';
+        switch ($etat) {
+          case 'valide':
+            $color = 'green';
+            $etat_label = '✅ validée';
+            break;
+          case 'rejete':
+            $color = 'red';
+            $etat_label = '❌ rejetée';
+            break;
+          default:
+            $color = 'orange';
+            $etat_label = '🕐 en attente';
+            break;
+        }
 
-  // Couleur selon l'état
-  switch ($etat) {
-    case 'valide':
-      $color = 'green';
-      $etat_label = '✅ validée';
-      break;
-    case 'rejete':
-      $color = 'red';
-      $etat_label = '❌ rejetée';
-      break;
-    default:
-      $color = 'orange';
-      $etat_label = '🕐 en attente';
-      break;
-  }
+        $etudiant = !empty($row['etudiant']) ? htmlspecialchars($row['etudiant']) : 'Nom inconnu';
+        $date = !empty($row['date_action']) ? date("d/m/Y à H:i", strtotime($row['date_action'])) : 'Date inconnue';
 
-  $etudiant = !empty($row['etudiant']) ? htmlspecialchars($row['etudiant']) : 'Nom inconnu';
-  $date = !empty($row['date_action']) ? date("d/m/Y à H:i", strtotime($row['date_action'])) : 'Date inconnue';
-
-  echo "<li style='margin-bottom:12px; padding:10px; background:#f9f9f9; border-left:6px solid $color; border-radius:8px;'>
-          $icon <strong>" . ucfirst($type) . "</strong> de <strong>$etudiant</strong> 
-          <span style='color:$color; font-weight:bold;'>$etat_label</span> 
-          le $date
-        </li>";
-}
-
-        ?>
-      </ul>
-    </div>
+        echo "<li style='margin-bottom:12px; padding:10px; background:#f9f9f9; border-left:6px solid $color; border-radius:8px;'>
+                $icon <strong>" . ucfirst($type) . "</strong> de <strong>$etudiant</strong> 
+                <span style='color:$color; font-weight:bold;'>$etat_label</span> 
+                le $date
+              </li>";
+      }
+      ?>
+    </ul>
+  </div>
+</div>
 
 
   <div class="chart-section">
@@ -489,7 +488,7 @@ LIMIT 5
 
 
 <div class="back-button">
-  <a href="../dashboard.php">← Retour au tableau de bord</a>
+  <a href="../accueil.php">← Retour au tableau de bord</a>
 </div>
 
 

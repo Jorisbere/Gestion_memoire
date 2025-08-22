@@ -264,7 +264,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <a href="forms/protocol.php">📄 Dépot de protocole</a>
 
   <?php if ($protocole_status === 'valide'): ?>
-    <a href="forms/soutenance.php">🧑‍💼 Demande de Soutenance</a>
+    <a href="forms/soutenance.php">🎓 Demande de Soutenance</a>
   <?php else: ?>
     <span style="opacity: 0.5; cursor: not-allowed;" title="Protocole non validé">🧑‍💼 Demande de Soutenance (bloqué)</span>
   <?php endif; ?>
@@ -277,14 +277,14 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
 
   <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
 
-  <a href="forms/statut.php">🏢 Infos</a>
+  <a href="forms/statut.php">🛈 Infos</a>
 <?php endif; ?>
 
 
       <?php if ($role === 'DM'): ?>
         <a href="forms/espace_dm.php">📁 Espace DM</a>
-        <a href="forms/admin_soutenance.php">🧑‍💼 Consultation des Soutenances</a>
-        <a href="forms/memoires_consultation.php">📊 Consultation des mémoires finaux</a>
+        <a href="forms/admin_soutenance.php">🗒 Consultation des Soutenances</a>
+        <a href="forms/memoires_consultation.php">📕 Consultation des mémoires finaux</a>
         <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
       <?php endif; ?>
       <a href="logout.php">🚪 Déconnexion</a>
