@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'gestion_memoire';
+$dbname = 'gestionmemoire';
 $user = 'root';
 $pass = '';
 
