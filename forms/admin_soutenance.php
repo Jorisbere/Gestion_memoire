@@ -147,7 +147,7 @@ $result = $stmt->get_result();
 </head>
 <body>
     <div class="back-button">
-    <a href="../dashboard.php">← Retour au tableau de bord</a>
+    <a href="../accueil.php">← Retour au tableau de bord</a>
   </div>
 
   <h2>🧑‍💼 Gestion des demandes de soutenance</h2>

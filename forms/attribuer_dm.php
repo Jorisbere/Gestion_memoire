@@ -10,20 +10,46 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'administrateur') {
 $notification = '';
 
 // Traitement du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['action'])) {
     $selected_id = intval($_POST['user_id']);
-    $stmt = $conn->prepare("UPDATE users SET role = 'DM' WHERE id = ?");
-    $stmt->bind_param("i", $selected_id);
-    if ($stmt->execute()) {
-        $notification = "✅ L'utilisateur a été nommé DM avec succès.";
-    } else {
-        $notification = "❌ Une erreur est survenue.";
+    $action = $_POST['action'];
+
+    if ($action === 'attribuer') {
+        $stmt = $conn->prepare("UPDATE users SET role = 'DM' WHERE id = ?");
+        $stmt->bind_param("i", $selected_id);
+        if ($stmt->execute()) {
+            $notification = "✅ L'utilisateur a été nommé DM avec succès.";
+        } else {
+            $notification = "❌ Une erreur est survenue lors de l'attribution.";
+        }
+        $stmt->close();
+    } elseif ($action === 'revoquer') {
+        $stmt = $conn->prepare("UPDATE users SET role = 'etudiant' WHERE id = ?");
+        $stmt->bind_param("i", $selected_id);
+        if ($stmt->execute()) {
+            $notification = "✅ Le rôle DM a été révoqué. L'utilisateur est redevenu étudiant.";
+        } else {
+            $notification = "❌ Une erreur est survenue lors de la révocation.";
+        }
+        $stmt->close();
     }
-    $stmt->close();
 }
 
+
 // Récupération des utilisateurs
-$result = $conn->query("SELECT id, username, role FROM users ORDER BY username ASC");
+$result = $conn->query("SELECT id, username, role FROM users WHERE role IN ('etudiant', 'DM') ORDER BY username ASC");
+
+$etudiants = [];
+$dms = [];
+
+while ($user = $result->fetch_assoc()) {
+    if ($user['role'] === 'etudiant') {
+        $etudiants[] = $user;
+    } elseif ($user['role'] === 'DM') {
+        $dms[] = $user;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,7 +60,7 @@ $result = $conn->query("SELECT id, username, role FROM users ORDER BY username A
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
+      background: #f0f4f8;
       padding: 40px;
       color: #333;
     }
@@ -42,7 +68,7 @@ $result = $conn->query("SELECT id, username, role FROM users ORDER BY username A
     .container {
       max-width: 600px;
       margin: auto;
-      background: #fff;
+      background: #dfe7f0ff;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
@@ -117,21 +143,36 @@ $result = $conn->query("SELECT id, username, role FROM users ORDER BY username A
     <h2>👤 Attribuer le rôle DM</h2>
 
     <form method="POST">
-      <label for="user_id">Sélectionner un utilisateur :</label>
-      <select name="user_id" id="user_id" required>
-        <option value="">-- Choisir --</option>
-        <?php while ($user = $result->fetch_assoc()): ?>
-          <option value="<?= $user['id'] ?>">
-            <?= htmlspecialchars($user['username']) ?> (<?= $user['role'] ?>)
-          </option>
-        <?php endwhile; ?>
-      </select>
+  <label for="user_id">Sélectionner un utilisateur :</label>
+  <select name="user_id" id="user_id" required>
+  <option value="">-- Choisir --</option>
 
-      <button type="submit">Attribuer le rôle DM</button>
-      <div class="back-button">
+  <optgroup label="Étudiants">
+    <?php foreach ($etudiants as $user): ?>
+      <option value="<?= $user['id'] ?>">
+        <?= htmlspecialchars($user['username']) ?> (étudiant)
+      </option>
+    <?php endforeach; ?>
+  </optgroup>
+
+  <optgroup label="DM actuels">
+    <?php foreach ($dms as $user): ?>
+      <option value="<?= $user['id'] ?>">
+        <?= htmlspecialchars($user['username']) ?> (DM)
+      </option>
+    <?php endforeach; ?>
+  </optgroup>
+</select>
+
+
+  <button type="submit" name="action" value="attribuer">Attribuer le rôle DM</button>
+  <button type="submit" name="action" value="revoquer" style="background:#d9534f;">Révoquer le rôle DM</button>
+
+  <div class="back-button">
     <a href="../dashboard.php">← Retour au tableau de bord</a>
   </div>
-    </form>
+</form>
+
 
     <?php if ($notification): ?>
       <div class="notification <?= str_starts_with($notification, '✅') ? 'success' : 'error' ?>">
