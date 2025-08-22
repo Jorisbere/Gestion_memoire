@@ -93,7 +93,7 @@ function getRejectedCount($conn, $table, $encadrant) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
+   j;;;;_ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f0f4f8;
   margin: 0;
