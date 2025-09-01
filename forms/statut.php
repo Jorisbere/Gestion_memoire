@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-echo "<p>Votre ID utilisateur : " . htmlspecialchars($user_id) . "</p>";
+//echo "<p>Votre ID utilisateur : " . htmlspecialchars($user_id) . "</p>";
 
 // Récupération du protocole avec nom du DM
 function getProtocoleInfo($user_id, $conn) {
