@@ -1,0 +1,15 @@
+<?php
+$host = 'sql.freedb.tech';
+$dbname = 'freedb_gestionmemoire';
+$user = 'freedb_Joris';
+$pass = 'wSRw8aPDjE*d#hf';
+$port = 3306;
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
+
+if ($conn->connect_error) {
+    die("Connexion échouée : " . $conn->connect_error);
+}
+
+// Connexion réussie
+?>

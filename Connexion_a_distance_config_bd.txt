@@ -1,0 +1,14 @@
+<?php
+$host = 'sql.freedb.tech';
+$dbname = 'freedb_gestionmemoire'; // ou le nom reçu par email
+$user = 'freedb_Joris';          // ton nom d’utilisateur complet
+$pass = 'wSRw8aPDjE*d#hf';
+
+try {
+    $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Connexion réussie
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+?>
