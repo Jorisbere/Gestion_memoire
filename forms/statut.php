@@ -8,10 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-<<<<<<< HEAD
-=======
 //echo "<p>Votre ID utilisateur : " . htmlspecialchars($user_id) . "</p>";
->>>>>>> 8722d16f15dcc8047a9f32fa7c30df4940a9739f
 
 // Récupération du protocole avec nom du DM, titre et date
 function getProtocoleInfo($user_id, $conn) {
@@ -105,6 +102,9 @@ function renderBadge($status) {
 <head>
     <meta charset="UTF-8">
     <title>Statut des documents</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -172,13 +172,13 @@ function renderBadge($status) {
         }
 
         td strong {
-            color: #0078D7;
+            color: #222426ff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>📋 Statut de vos documents</h2>
+        <h2><i class="fa-solid fa-file"></i> Statut de vos documents</h2>
 
         <table>
             <thead>

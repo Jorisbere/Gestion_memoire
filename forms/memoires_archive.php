@@ -48,6 +48,7 @@ $result = $stmt->get_result();
   <meta charset="UTF-8">
   <title>Mémoires Archivés</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -145,7 +146,7 @@ $result = $stmt->get_result();
     <a href="javascript:history.back()" class="btn-back">← Retour au tableau de bord</a>
   </div>
 
-  <h2>📊 Mémoires Archivés</h2>
+  <h2><i class="fa-solid fa-folder-open"></i> Mémoires Archivés</h2>
 
   <form method="GET" class="search-bar">
     <input type="text" name="search" placeholder="Rechercher par titre..." value="<?= htmlspecialchars($search) ?>">
@@ -171,7 +172,7 @@ $result = $stmt->get_result();
             <td><?= htmlspecialchars($row['auteur']) ?></td>
             <td><?= htmlspecialchars($row['annee']) ?></td>
             <td><?= date('d/m/Y', strtotime($row['date_depot'])) ?></td>
-            <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank">📥 Télécharger</a></td>
+            <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank"><i class="fa-solid fa-download"></i> Télécharger</a></td>
           </tr>
         <?php endwhile; ?>
       <?php else: ?>

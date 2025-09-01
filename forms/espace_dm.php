@@ -189,8 +189,8 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 .recent-actions {
-  background: #fff3e0;
-  border-left: 6px solid #ff9800;
+  background: #f4f3f1ff;
+  border-left: 6px solid #f1edd4ff;
   padding: 20px;
   border-radius: 10px;
   margin-top: 30px;
@@ -283,11 +283,11 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 /* Couleurs personnalisées */
-.encadres { background: linear-gradient(135deg, #00BCD4, #4DD0E1); }
+.encadres { background: linear-gradient(135deg, #527479ff, #527479ff); }
 .soutenance.attente { background: linear-gradient(135deg, #FF9800, #FFB74D); }
 .soutenance.validée { background: linear-gradient(135deg, #4CAF50, #81C784); }
 .soutenance.rejetée { background: linear-gradient(135deg, #F44336, #E57373); }
-.memoire.attente { background: linear-gradient(135deg, #3F51B5, #7986CB); }
+.memoire.attente { background: linear-gradient(135deg, #464649ff, #323337ff); }
 .memoire.validée { background: linear-gradient(135deg, #009688, #4DB6AC); }
 .memoire.rejetée { background: linear-gradient(135deg, #D32F2F, #EF5350); }
 

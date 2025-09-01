@@ -83,14 +83,15 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   <meta charset="UTF-8">
   <title>Tableau de bord</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       min-height: 100vh;
-      background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
-      color: #fff;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
+      color: #1b1919ff;
       transition: background 0.3s, color 0.3s;
     }
     .dark-mode {
@@ -271,7 +272,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   padding: 12px 20px;
   border-radius: 10px;
   font-weight: bold;
-  color: #fff;
+  color: #2b2828ff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
@@ -293,7 +294,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
 .chart-card h4 {
   margin-bottom: 12px;
   font-size: 16px;
-  color: #fff;
+  color: #1d1b1bff;
 }
 
 .chart-box.square {
@@ -354,43 +355,43 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
         ?>
         <span class="username"><?= $username ?></span>
         <div class="dropdown" role="menu">
-          <a href="profile.php">👤 Mon profil</a>
-          <a href="settings.php">⚙️ Paramètres</a>
-          <a href="logout.php">🚪 Déconnexion</a>
+          <a href="profile.php"><i class="fa-solid fa-user"></i> Mon profil</a>
+          <a href="settings.php"><i class="fa-solid fa-cog"></i> Paramètres</a>
+          <a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
         </div>
       </div>
       <div id="darkToggle" title="Mode sombre" aria-label="Basculer le mode sombre">🌙</div>
     </div>
     <nav class="nav">
-      <a href="dashboard.php">🏠 Tableau de bord</a>
-      <a href="forms/protocoles_consultation.php">📄 Consultation Protocole</a>
-      <a href="forms/programmer_soutenance.php">🏢 Programmer Soutenance</a>
-      <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
-      <a href="forms/attribuer_dm.php">👤 Ajouter DM</a>
-      <a href="logout.php">🚪 Déconnexion</a>
+      <a href="dashboard.php"><i class="fa-solid fa-house"></i> Tableau de bord</a>
+      <a href="forms/protocoles_consultation.php"><i class="fa-solid fa-eye"></i> Consultation Protocole</a>
+      <a href="forms/programmer_soutenance.php"><i class="fa-solid fa-book"></i> Programmer Soutenance</a>
+      <a href="forms/memoires_archive.php"><i class="fa-solid fa-box-archive"></i> Memoires Archiver</a>
+      <a href="forms/attribuer_dm.php"><i class="fa-solid fa-user"></i> Ajouter DM</a>
+      <a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
     </nav>
   </aside>
   <main class="main">
     <header>
-      <h1>Résumé fiscal</h1>
+      <h1>Résumé</h1>
     </header>
           <section class="stats-grid">
   <div class="stat-box success">
-    <span class="icon">✅</span>
+    <span class="icon"><i class="fa-solid fa-check"></i></span>
     <div class="stat-content">
       <h3>Protocoles validés</h3>
       <p><?= $protocoles_valides ?></p>
     </div>
   </div>
   <div class="stat-box danger">
-    <span class="icon">❌</span>
+    <span class="icon"><i class="fa-solid fa-times"></i></span>
     <div class="stat-content">
       <h3>Protocoles rejetés</h3>
       <p><?= $protocoles_rejetes ?></p>
     </div>
   </div>
   <div class="stat-box warning">
-    <span class="icon">⏳</span>
+    <span class="icon"><i class="fa-solid fa-hourglass-half"></i></span>
     <div class="stat-content">
       <h3>Protocoles en attente</h3>
       <p><?= $protocoles_attente ?></p>
@@ -398,21 +399,21 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   </div>
 
   <div class="stat-box success">
-    <span class="icon">✅</span>
+    <span class="icon"><i class="fa-solid fa-check"></i></span>
     <div class="stat-content">
       <h3>Soutenances validées</h3>
       <p><?= $soutenances_valides ?></p>
     </div>
   </div>
   <div class="stat-box danger">
-    <span class="icon">❌</span>
+    <span class="icon"><i class="fa-solid fa-times"></i></span>
     <div class="stat-content">
       <h3>Soutenances rejetées</h3>
       <p><?= $soutenances_rejetes ?></p>
     </div>
   </div>
   <div class="stat-box warning">
-    <span class="icon">⏳</span>
+    <span class="icon"><i class="fa-solid fa-hourglass-half"></i></span>
     <div class="stat-content">
       <h3>Soutenances en attente</h3>
       <p><?= $soutenances_attente ?></p>
@@ -420,21 +421,21 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   </div>
 
   <div class="stat-box success">
-    <span class="icon">✅</span>
+    <span class="icon"><i class="fa-solid fa-check"></i></span>
     <div class="stat-content">
       <h3>Mémoires validés</h3>
       <p><?= $memoires_valides ?></p>
     </div>
   </div>
   <div class="stat-box danger">
-    <span class="icon">❌</span>
+    <span class="icon"><i class="fa-solid fa-times"></i></span>
     <div class="stat-content">
       <h3>Mémoires rejetés</h3>
       <p><?= $memoires_rejetes ?></p>
     </div>
   </div>
   <div class="stat-box warning">
-    <span class="icon">⏳</span>
+    <span class="icon"><i class="fa-solid fa-hourglass-half"></i></span>
     <div class="stat-content">
       <h3>Mémoires en attente</h3>
       <p><?= $memoires_attente ?></p>
@@ -442,7 +443,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   </div>
 
   <div class="stat-box info">
-    <span class="icon">👥</span>
+    <span class="icon"><i class="fa-solid fa-user"></i></span>
     <div class="stat-content">
       <h3>DM attribués</h3>
       <p><?= $dm_attribues ?></p>
@@ -450,7 +451,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   </div>
 
   <div class="stat-box info">
-  <span class="icon">🎓</span>
+  <span class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
   <div class="stat-content">
     <h3>Étudiants enregistrés</h3>
     <p><?= $etudiants_total ?></p>
@@ -458,7 +459,7 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
 </div>
 
 <div class="stat-box info">
-  <span class="icon">📈</span>
+  <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
   <div class="stat-content">
     <h3>Taux de validation</h3>
     <p>
@@ -485,27 +486,27 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '';
   </div>
 </section>
 <div class="summary-cards">
-  <div class="card">📄 Total protocoles : <?= $protocoles_valides + $protocoles_rejetes + $protocoles_attente ?></div>
-  <div class="card">🏢 Total soutenances : <?= $soutenances_valides + $soutenances_rejetes + $soutenances_attente ?></div>
-  <div class="card">📘 Total mémoires : <?= $memoires_valides + $memoires_rejetes + $memoires_attente ?></div>
-    <div class="card">👥 Total utilisateurs : <?= $total_utilisateurs ?></div>
+  <div class="card"><i class="fa-solid fa-file"></i> Total protocoles : <?= $protocoles_valides + $protocoles_rejetes + $protocoles_attente ?></div>
+  <div class="card"><i class="fa-solid fa-building"></i> Total soutenances : <?= $soutenances_valides + $soutenances_rejetes + $soutenances_attente ?></div>
+  <div class="card"><i class="fa-solid fa-book"></i> Total mémoires : <?= $memoires_valides + $memoires_rejetes + $memoires_attente ?></div>
+    <div class="card"><i class="fa-solid fa-users"></i> Total utilisateurs : <?= $total_utilisateurs ?></div>
 </div>
 
 <section class="charts-grid">
   <div class="chart-card">
-    <h4>📄 Protocoles</h4>
+    <h4><i class="fa-solid fa-file"></i> Protocoles</h4>
     <div class="chart-box square">
       <canvas id="protocolChart"></canvas>
     </div>
   </div>
   <div class="chart-card">
-    <h4>🏢 Soutenances</h4>
+    <h4><i class="fa-solid fa-building"></i> Soutenances</h4>
     <div class="chart-box square">
       <canvas id="soutenanceChart"></canvas>
     </div>
   </div>
   <div class="chart-card">
-    <h4>📘 Mémoires</h4>
+    <h4><i class="fa-solid fa-book"></i> Mémoires</h4>
     <div class="chart-box square">
       <canvas id="memoireChart"></canvas>
     </div>

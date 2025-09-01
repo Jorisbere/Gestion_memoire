@@ -82,6 +82,7 @@ while ($dm = $dm_result->fetch_assoc()) {
   <meta charset="UTF-8">
   <title>Protocoles déposés</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -251,7 +252,7 @@ while ($dm = $dm_result->fetch_assoc()) {
     <a href="../dashboard.php">← Retour au tableau de bord</a>
   </div>
 
-  <h2>📄 Protocoles déposés</h2>
+  <h2><i class="fa-solid fa-file"></i> Protocoles déposés</h2>
   <?php if (isset($_SESSION['notification'])): ?>
   <div class="notification success">
     <?= $_SESSION['notification'] ?>
@@ -294,7 +295,7 @@ while ($dm = $dm_result->fetch_assoc()) {
   <td><?= htmlspecialchars($row['titre']) ?></td>
   <td><?= htmlspecialchars($row['auteur'] ?? 'Inconnu') ?></td>
   <td><?= date('d/m/Y', strtotime($row['date_depot'])) ?></td>
-  <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank">📥 Télécharger</a></td>
+  <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank"><i class="fa-solid fa-download"></i> Télécharger</a></td>
   <td>
     <span class="badge 
       <?= $row['etat_validation'] === 'valide' ? 'bg-success' : 
@@ -319,11 +320,11 @@ while ($dm = $dm_result->fetch_assoc()) {
             <option value="<?= $dm['id'] ?>"><?= htmlspecialchars($dm['username']) ?></option>
           <?php endforeach; ?>
         </select>
-        <button type="submit" name="action" value="valider" class="btn btn-success">✅ Valider</button>
+        <button type="submit" name="action" value="valider" class="btn btn-success"><i class="fa-solid fa-check"></i> Valider</button>
       </form>
       <form method="post" action="valider_protocole.php" style="display:inline;">
         <input type="hidden" name="id_protocole" value="<?= $row['id'] ?>">
-        <button type="submit" name="action" value="rejeter" class="btn btn-danger">❌ Rejeter</button>
+        <button type="submit" name="action" value="rejeter" class="btn btn-danger"><i class="fa-solid fa-xmark"></i> Rejeter</button>
       </form>
     <?php endif; ?>
   </td>

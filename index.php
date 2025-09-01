@@ -18,10 +18,18 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+      background-image: url('assets/images/image.png');
+      background-size: cover;
+      background-position: center;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
+
+    
+
+
+
 
     /* 🔝 Barre du haut */
     header {
@@ -64,13 +72,13 @@
 
     h1 {
       font-size: 2.4em;
-      color: #2c3e50;
+      color: #f9f9fbff;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 1.1em;
-      color: #34495e;
+      color: #ecf1f5ff;
       margin-bottom: 30px;
       max-width: 600px;
     }
@@ -104,7 +112,7 @@
       padding: 15px 30px;
       text-align: center;
       font-size: 13px;
-      color: #777;
+      color: #f9f6f6ff;
       border-top: 1px solid #e0e0e0;
     }
 
@@ -113,7 +121,7 @@
     }
 
     footer .links a {
-      color: #0078D7;
+      color: #021322ff;
       text-decoration: none;
       margin: 0 10px;
       font-weight: 500;
@@ -223,22 +231,22 @@ form button:hover {
 
 
 <main>
-  <img src="assets/images/bJxrtjp71wqT9CVJ.webp" alt="Logo Fiscal" class="logo">
-  <h1>Bienvenue sur votre tableau fiscal</h1>
-  <p>Gérez vos déclarations, visualisez vos revenus, suivez vos performances et accédez à des outils fiscaux intelligents.</p>
+  <!-- <img src="assets/images/télécharger (1).png" alt="Logo Fiscal" class="logo"> -->
+  <h1>Bienvenue sur votre espace de gestion académique</h1>
+<p>Organisez vos mémoires, suivez les demandes de soutenance, planifiez les sessions et collaborez efficacement avec les encadrants et les étudiants grâce à une interface intuitive et sécurisée.</p>
 
   <div class="buttons">
-    <a href="register.php" class="button">📝 S’inscrire</a>
-    <a href="login.php" class="button">📊 Se connecter</a>
+    <a href="register.php" class="button"><i class="fa-solid fa-user-plus"></i> S’inscrire</a>
+    <a href="login.php" class="button"><i class="fa-solid fa-user"></i> Se connecter</a>
   </div>
 </main>
 
 <footer>
-  &copy; <?= date('Y') ?> Tableau Fiscal. Tous droits réservés.
+  &copy; <?= date('Y') ?> Gestion Memoire. Tous droits réservés.
   <div class="links">
-    <a href="help.php">Aide</a>
-    <a href="contact.php">Contact</a>
-    <a href="terms.php">Conditions</a>
+    <a href="help.php"><i class="fa-solid fa-circle-question"></i> Aide</a>
+    <a href="contact.php"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="terms.php"><i class="fa-solid fa-file-contract"></i> Conditions</a>
   </div>
 </footer>
 <!-- 🧠 Popup Aide -->
@@ -253,17 +261,18 @@ form button:hover {
     </div>
 
     <div id="faq" class="tab-content active">
-      <p><strong>Comment accéder au dashboard ?</strong><br> Cliquez sur “Découvrir le dashboard” et connectez-vous.</p>
-      <p><strong>Comment modifier mes déclarations ?</strong><br> Une fois connecté, allez dans “Historique”.</p>
-      <p><strong>Mes données sont-elles sécurisées ?</strong><br> Oui, elles sont stockées localement et protégées.</p>
+      <p2><strong>Comment accéder à l’espace mémoire ?</strong><br> Cliquez sur “Accéder à l’espace mémoire” et identifiez-vous avec vos identifiants académiques.</p2>
+<p2><strong>Comment modifier un mémoire ou une demande de soutenance ?</strong><br> Une fois connecté, rendez-vous dans “Mes projets” pour éditer ou mettre à jour les informations.</p2>
+<p2><strong>Mes données sont-elles sécurisées ?</strong><br> Oui, elles sont hébergées sur un serveur sécurisé et protégées par des protocoles de chiffrement.</p2>
+
     </div>
 
     <div id="contact" class="tab-content">
       <form>
-        <label for="email">📧 Votre email :</label>
+        <label for="email"><i class="fa-solid fa-envelope"></i> Votre email :</label>
         <input type="email" id="email" placeholder="exemple@domaine.com" required>
 
-        <label for="message">✉️ Message :</label>
+        <label for="message"><i class="fa-solid fa-comment"></i> Message :</label>
         <textarea id="message" rows="4" placeholder="Votre question ou remarque..." required></textarea>
 
         <button type="submit">Envoyer</button>
