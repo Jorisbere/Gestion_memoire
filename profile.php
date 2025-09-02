@@ -33,15 +33,16 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : 'assets/
 <head>
   <meta charset="UTF-8">
   <title>Mon Profil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="sidebar">
   <h2>Mon Compte</h2>
-  <a href="profile.php">Profil</a>
-  <a href="settings.php">Paramètres</a>
-  <a href="logout.php">Déconnexion</a>
+  <a href="profile.php"><i class="fa-solid fa-user"></i> Profil</a>
+  <a href="settings.php"><i class="fa-solid fa-cog"></i> Paramètres</a>
+  <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
 </div>
 
 <header>
@@ -52,12 +53,12 @@ $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : 'assets/
   <section class="profile-card">
     <img src="<?= $avatar ?>" alt="Photo de profil" class="avatar" />
     <h2><?= $username ?></h2>
-    <p>Email : <?= $email ?></p>
-    <p>Localisation : <?= $location ?></p>
-    <p>Date de naissance : <?= $birthdate ?></p>
-    <p>Biographie : <?= $bio ?></p>
-    <a href="javascript:history.back()" class="btn-back">← Retour</a>
-    <a href="settings.php" class="btn">Modifier le profil</a>
+    <p><i class="fa-solid fa-envelope"></i> Email : <?= $email ?></p>
+    <p><i class="fa-solid fa-map-marker-alt"></i> Localisation : <?= $location ?></p>
+    <p><i class="fa-solid fa-calendar-alt"></i> Date de naissance : <?= $birthdate ?></p>
+    <p><i class="fa-solid fa-user-edit"></i> Biographie : <?= $bio ?></p>
+    <a href="javascript:history.back()" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+    <a href="settings.php" class="btn"><i class="fa-solid fa-user-edit"></i> Modifier le profil</a>
   </section>
 </main>
 

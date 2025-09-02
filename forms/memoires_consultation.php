@@ -43,6 +43,7 @@ $result = $stmt->get_result();
   <meta charset="UTF-8">
   <title>Consultation des mémoires finaux</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -171,7 +172,7 @@ $result = $stmt->get_result();
           <td><?= date('d/m/Y', strtotime($row['date_depot'])) ?></td>
           <td>
             <?php if (!empty($row['fichier_path'])): ?>
-              <a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank">📥 Télécharger</a>
+              <a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank"><i class="fa-solid fa-download"></i> Télécharger</a>
             <?php else: ?>
               <em>Non transmis</em>
             <?php endif; ?>
@@ -187,11 +188,11 @@ $result = $stmt->get_result();
             <?php if ($row['etat_validation'] === 'en_attente'): ?>
               <form method="post" action="valider_memoire.php" style="display:inline;">
                 <input type="hidden" name="id_memoire" value="<?= $row['id'] ?>">
-                <button type="submit" name="action" value="valider" class="btn btn-success">✅ Valider</button>
+                <button type="submit" name="action" value="valider" class="btn btn-success"><i class="fa-solid fa-check"></i> Valider</button>
               </form>
               <form method="post" action="valider_memoire.php" style="display:inline;">
                 <input type="hidden" name="id_memoire" value="<?= $row['id'] ?>">
-                <button type="submit" name="action" value="rejeter" class="btn btn-danger">❌ Rejeter</button>
+                <button type="submit" name="action" value="rejeter" class="btn btn-danger"><i class="fa-solid fa-times"></i> Rejeter</button>
               </form>
             <?php endif; ?>
           </td>

@@ -72,6 +72,7 @@ $last_stmt->close();
   <meta charset="UTF-8">
   <title>Dépot de protocole</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script>
 function confirmerDepot() {
   return confirm("Êtes-vous sûr de vouloir déposer ce protocole ?");
@@ -221,18 +222,18 @@ function confirmerDepot() {
         break;
     }
   ?>
-  <div class="message" style="background:#f0f4ff; border:1px solid #cce; margin-bottom:20px;">
+  <!-- <div class="message" style="background:#f0f4ff; border:1px solid #cce; margin-bottom:20px;">
     <strong>📌 Dernier protocole déposé :</strong><br>
     <span><strong>Titre :</strong> <?= htmlspecialchars($last_protocole['titre']) ?></span><br>
     <span><strong>Statut :</strong> <?= $badge ?></span><br>
     <span><strong>Date :</strong> <?= date('d/m/Y à H:i', strtotime($last_protocole['date_depot'])) ?></span><br>
     <?php if (!empty($last_protocole['fichier_path']) && file_exists($last_protocole['fichier_path'])): ?>
-      <a href="<?= $last_protocole['fichier_path'] ?>" target="_blank" style="color:#0078D7; font-weight:bold;">📥 Télécharger le fichier</a>
+      <a href="<?= $last_protocole['fichier_path'] ?>" target="_blank" style="color:#0078D7; font-weight:bold;"><i class="fa-solid fa-download"></i> Télécharger le fichier</a>
     <?php endif; ?>
   </div>
-<?php endif; ?>
+<?php endif; ?> -->
 
-    <h2>📄 Dépot de protocole</h2>
+    <h2><i class="fa-solid fa-file"></i> Dépot de protocole</h2>
     <label for="titre">Titre du protocole</label>
     <input type="text" name="titre" id="titre" required>
 

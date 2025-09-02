@@ -51,6 +51,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <meta charset="UTF-8">
   <title>Accueil</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -58,8 +59,8 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
       padding: 0;
       display: flex;
       min-height: 100vh;
-      background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
-      color: #fff;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
+      color: #1b1919ff;
       transition: background 0.3s, color 0.3s;
     }
     .sidebar {
@@ -165,6 +166,14 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   transform: scale(1.05);
 }
 
+    .logo1 {
+      flex: 1;
+      padding: 10px;
+      max-width: 70px;
+      max-height: 70px;
+      margin: 0 auto;
+    }
+
     .nav {
       display: flex;
       flex-direction: column;
@@ -191,7 +200,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 20px;
     }
     .dark-mode {
       background: #0f1115;
@@ -236,66 +245,77 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <aside class="sidebar">
     <div class="user-menu" tabindex="0" aria-expanded="false">
       <?php
-      $avatar = $_SESSION['avatar'] ?? '';
-        $initiales = '';
-        if (empty($avatar)) {
+          if (empty($avatar)) {
+            $initiales = '';
             $mots = explode(' ', trim($username));
-            foreach ($mots as $mot) {
-                $initiales .= strtoupper(mb_substr($mot, 0, 1));
+            foreach ($mots as $m) {
+              $initiales .= strtoupper(mb_substr($m, 0, 1));
             }
             echo '<div class="avatar-initiales">'.htmlspecialchars($initiales).'</div>';
-        } else {
-            echo '<img src="'.htmlspecialchars($avatar).'" alt="Avatar de '.htmlspecialchars($username).'" class="avatar">';
-        }
-      ?>
+          } else {
+            echo '<img src="'.htmlspecialchars($avatar).'" alt="Avatar" class="avatar">';
+          }
+        ?>
       
       <span class="username"><?= $username ?></span>
       <div class="dropdown" role="menu">
         <a>--- <strong><?= htmlspecialchars($role) ?></strong></a>
-        <a href="profile.php">👤 Mon profil</a>
-        <a href="settings.php">⚙️ Paramètres</a>
-        <a href="logout.php">🚪 Déconnexion</a>
+        <a href="profile.php"><i class="fa-solid fa-user"></i> Mon profil</a>
+        <a href="settings.php"><i class="fa-solid fa-cog"></i> Paramètres</a>
+        <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
       </div>
     </div>
-    <div id="darkToggle" tabindex="0" role="button" aria-label="Basculer le mode sombre">🌙</div>
+    <div id="darkToggle" tabindex="0" role="button" aria-label="Basculer le mode sombre"><i class="fa-solid fa-moon"></i></div>
 
     <nav class="nav">
       <?php if ($role === 'etudiant'): ?>
-  <a href="forms/protocol.php">📄 Dépot de protocole</a>
+  <a href="forms/protocol.php"><i class="fa-solid fa-file"></i> Dépot de protocole</a>
 
   <?php if ($protocole_status === 'valide'): ?>
-    <a href="forms/soutenance.php">🎓 Demande de Soutenance</a>
+    <a href="forms/soutenance.php"><i class="fa-solid fa-graduation-cap"></i> Demande de Soutenance</a>
   <?php else: ?>
-    <span style="opacity: 0.5; cursor: not-allowed;" title="Protocole non validé">🧑‍💼 Demande de Soutenance (bloqué)</span>
+    <span style="opacity: 0.5; cursor: not-allowed;" title="Protocole non validé"><i class="fa-solid fa-user-tie"></i> Demande de Soutenance (bloqué)</span>
   <?php endif; ?>
 
   <?php if ($protocole_status === 'valide' && $soutenance_status === 'valide'): ?>
-    <a href="forms/memoire.php">🏢 Dépot mémoire Final</a>
+    <a href="forms/memoire.php"><i class="fa-solid fa-building"></i> Dépot mémoire Final</a>
   <?php else: ?>
-    <span style="opacity: 0.5; cursor: not-allowed;" title="Soutenance non validée">🏢 Dépot mémoire Final (bloqué)</span>
+    <span style="opacity: 0.5; cursor: not-allowed;" title="Soutenance non validée"><i class="fa-solid fa-building"></i> Dépot mémoire Final (bloqué)</span>
   <?php endif; ?>
 
-  <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
+  <a href="forms/memoires_archive.php"><i class="fa-solid fa-folder-open"></i> Memoires Archiver</a>
 
-  <a href="forms/statut.php">🛈 Infos</a>
+  <a href="forms/statut.php"><i class="fa-solid fa-info-circle"></i> Infos</a>
 <?php endif; ?>
 
 
       <?php if ($role === 'DM'): ?>
-        <a href="forms/espace_dm.php">📁 Espace DM</a>
-        <a href="forms/admin_soutenance.php">🗒 Consultation des Soutenances</a>
-        <a href="forms/memoires_consultation.php">📕 Consultation des mémoires finaux</a>
-        <a href="forms/memoires_archive.php">📊 Memoires Archiver</a>
+        <a href="forms/espace_dm.php"><i class="fa-solid fa-folder"></i> Espace DM</a>
+        <a href="forms/admin_soutenance.php"><i class="fa-solid fa-file"></i> Consultation des Soutenances</a>
+        <a href="forms/memoires_consultation.php"><i class="fa-solid fa-book"></i> Consultation des mémoires finaux</a>
+        <a href="forms/memoires_archive.php"><i class="fa-solid fa-chart-bar"></i> Memoires Archiver</a>
+        <a href="forms/memoires_archive.php"><i class="fa-solid fa-user-graduate"></i> Liste Etudiants Suivis</a>
       <?php endif; ?>
-      <a href="logout.php">🚪 Déconnexion</a>
+      <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
     </nav>
   </aside>
 
+  <img src="assets/images/télécharger (1).png" alt="Logo Fiscal" class="logo1">
   <main>
-    <img src="assets/images/télécharger.jpg" alt="Logo Fiscal" class="logo">
+    <img src="assets/images/bJxrtjp71wqT9CVJ.webp" alt="Logo Fiscal" class="logo">
     <h1>Bienvenue <?= $username ?> 👋</h1>
-    <p>Gérez vos déclarations, visualisez vos revenus, suivez vos performances et accédez à des outils fiscaux intelligents.</p>
-  </main>
+    <?php
+// Exemple : rôle récupéré depuis la base ou la session
+$role = $user['role'];
+
+if ($role === "etudiant") {
+    echo '<p>Déposez vos protocoles et vos mémoires, suivez l’état de vos demandes de soutenance, accédez aux retours de vos encadrants et gérez vos documents académiques en toute simplicité.</p>';
+} elseif ($role === "DM") {
+    echo '<p>Suivez les projets de vos étudiants, consultez leurs demandes de soutenance, validez les étapes clés et centralisez les échanges pédagogiques dans un espace sécurisé et collaboratif.</p>';
+} else {
+    echo '<p>Bienvenue sur la plateforme de gestion académique. Veuillez vous connecter pour accéder à vos fonctionnalités personnalisées.</p>';
+}
+?>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
