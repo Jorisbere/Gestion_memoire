@@ -62,7 +62,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 20px;
       margin-top: 140px;
     }
 
@@ -233,15 +233,9 @@ form button:hover {
 
 
 <main>
-<<<<<<< HEAD
-  <img src="assets/images/télécharger.png" alt="Logo Fiscal" class="logo">
-  <h1>Bienvenue sur votre votre application de gestion des mémoires académiques de U-AUBEN </h1>
-  <p></p>
-=======
   <!-- <img src="assets/images/télécharger (1).png" alt="Logo Fiscal" class="logo"> -->
   <h1>Bienvenue sur votre espace de gestion académique</h1>
 <p>Organisez vos mémoires, suivez les demandes de soutenance, planifiez les sessions et collaborez efficacement avec les encadrants et les étudiants grâce à une interface intuitive et sécurisée.</p>
->>>>>>> 284ed42c7761f536e73b861b5ec106dca0eb8b13
 
   <div class="buttons">
     <a href="register.php" class="button"><i class="fa-solid fa-user-plus"></i> S’inscrire</a>
@@ -249,31 +243,12 @@ form button:hover {
   </div>
 </main>
 
-<<<<<<< HEAD
-<footer class="academic-footer">
-  <div class="footer-content">
-    <div class="footer-branding">
-      <strong>Gestion de Mémoire</strong><br>
-      <small>Plateforme académique pour le suivi des mémoires, protocoles et soutenances</small>
-    </div>
-
-    <div class="footer-links">
-      <a href="help.php">📘 Aide</a>
-      <a href="contact.php">📨 Contact</a>
-      <a href="terms.php">📄 Conditions</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    &copy; <?= date('Y') ?> Gestion de Mémoire. Tous droits réservés.
-=======
 <footer>
   &copy; <?= date('Y') ?> Gestion Memoire. Tous droits réservés.
   <div class="links">
     <a href="help.php"><i class="fa-solid fa-circle-question"></i> Aide</a>
     <a href="contact.php"><i class="fa-solid fa-envelope"></i> Contact</a>
     <a href="terms.php"><i class="fa-solid fa-file-contract"></i> Conditions</a>
->>>>>>> 284ed42c7761f536e73b861b5ec106dca0eb8b13
   </div>
 </footer>
 
