@@ -200,7 +200,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 20px;
     }
     .dark-mode {
       background: #0f1115;
@@ -245,18 +245,17 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <aside class="sidebar">
     <div class="user-menu" tabindex="0" aria-expanded="false">
       <?php
-      $avatar = $_SESSION['avatar'] ?? '';
-        $initiales = '';
-        if (empty($avatar)) {
+          if (empty($avatar)) {
+            $initiales = '';
             $mots = explode(' ', trim($username));
-            foreach ($mots as $mot) {
-                $initiales .= strtoupper(mb_substr($mot, 0, 1));
+            foreach ($mots as $m) {
+              $initiales .= strtoupper(mb_substr($m, 0, 1));
             }
             echo '<div class="avatar-initiales">'.htmlspecialchars($initiales).'</div>';
-        } else {
-            echo '<img src="'.htmlspecialchars($avatar).'" alt="Avatar de '.htmlspecialchars($username).'" class="avatar">';
-        }
-      ?>
+          } else {
+            echo '<img src="'.htmlspecialchars($avatar).'" alt="Avatar" class="avatar">';
+          }
+        ?>
       
       <span class="username"><?= $username ?></span>
       <div class="dropdown" role="menu">
@@ -295,6 +294,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
         <a href="forms/admin_soutenance.php"><i class="fa-solid fa-file"></i> Consultation des Soutenances</a>
         <a href="forms/memoires_consultation.php"><i class="fa-solid fa-book"></i> Consultation des mémoires finaux</a>
         <a href="forms/memoires_archive.php"><i class="fa-solid fa-chart-bar"></i> Memoires Archiver</a>
+        <a href="forms/memoires_archive.php"><i class="fa-solid fa-user-graduate"></i> Liste Etudiants Suivis</a>
       <?php endif; ?>
       <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
     </nav>
@@ -304,7 +304,18 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <main>
     <img src="assets/images/télécharger (2).png" alt="Logo Fiscal" class="logo">
     <h1>Bienvenue <?= $username ?> 👋</h1>
-    <p>Gérez vos mémoires, suivez les demandes de soutenance, planifiez les sessions et collaborez efficacement avec les encadrants et les étudiants grâce à une interface intuitive et sécurisée.</p>
+    <?php
+// Exemple : rôle récupéré depuis la base ou la session
+$role = $user['role'];
+
+if ($role === "etudiant") {
+    echo '<p>Déposez vos protocoles et vos mémoires, suivez l’état de vos demandes de soutenance, accédez aux retours de vos encadrants et gérez vos documents académiques en toute simplicité.</p>';
+} elseif ($role === "DM") {
+    echo '<p>Suivez les projets de vos étudiants, consultez leurs demandes de soutenance, validez les étapes clés et centralisez les échanges pédagogiques dans un espace sécurisé et collaboratif.</p>';
+} else {
+    echo '<p>Bienvenue sur la plateforme de gestion académique. Veuillez vous connecter pour accéder à vos fonctionnalités personnalisées.</p>';
+}
+?>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {

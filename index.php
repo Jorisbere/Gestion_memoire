@@ -63,6 +63,7 @@
       justify-content: center;
       text-align: center;
       padding: 40px 20px;
+      margin-top: 140px;
     }
 
     .logo {
@@ -72,7 +73,7 @@
 
     h1 {
       font-size: 2.4em;
-      color: #f9f9fbff;
+      color: #ffffffff;
       margin-bottom: 10px;
     }
 
@@ -113,7 +114,8 @@
       text-align: center;
       font-size: 13px;
       color: #f9f6f6ff;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid #1a9ed7ff;
+      margin-top: auto;
     }
 
     footer .links {
@@ -261,9 +263,9 @@ form button:hover {
     </div>
 
     <div id="faq" class="tab-content active">
-      <p2><strong>Comment accéder à l’espace mémoire ?</strong><br> Cliquez sur “Accéder à l’espace mémoire” et identifiez-vous avec vos identifiants académiques.</p2>
-<p2><strong>Comment modifier un mémoire ou une demande de soutenance ?</strong><br> Une fois connecté, rendez-vous dans “Mes projets” pour éditer ou mettre à jour les informations.</p2>
-<p2><strong>Mes données sont-elles sécurisées ?</strong><br> Oui, elles sont hébergées sur un serveur sécurisé et protégées par des protocoles de chiffrement.</p2>
+      <p2><strong>Comment accéder au site ?</strong><br> Cliquez sur “Se connecter” et identifiez-vous avec vos identifiants de connection.</p2>
+      <p2><strong>Comment modifier un mémoire ou une demande de soutenance ?</strong><br> Une fois connecté, rendez-vous dans “Mes projets” pour éditer ou mettre à jour les informations.</p2>
+      <p2><strong>Mes données sont-elles sécurisées ?</strong><br> Oui, elles sont hébergées sur un serveur sécurisé et protégées par des protocoles de chiffrement.</p2>
 
     </div>
 

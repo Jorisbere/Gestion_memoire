@@ -89,14 +89,16 @@ $stmt->close();
   <meta charset="UTF-8">
   <title>Modifier le Profil</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <div class="sidebar">
   <h2>Mon Compte</h2>
-  <a href="profile.php">Profil</a>
-  <a href="settings.php">Paramètres</a>
-  <a href="logout.php">Déconnexion</a>
+  <a href="profile.php"><i class="fa-solid fa-user"></i> Profil</a>
+  <a href="settings.php"><i class="fa-solid fa-cog"></i> Paramètres</a>
+  <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
 </div>
 
 <header>
@@ -106,32 +108,32 @@ $stmt->close();
 <main class="settings-container">
   <form method="POST" enctype="multipart/form-data" class="form-profile">
     <div class="form-group">
-      <label for="username">👤 Nom d'utilisateur :</label>
+      <label for="username"><i class="fa-solid fa-user"></i> Nom d'utilisateur :</label>
       <input type="text" name="username" id="username" value="<?= htmlspecialchars($user['username'] ?? '') ?>" required />
     </div>
 
     <div class="form-group">
-      <label for="email">📧 Email :</label>
+      <label for="email"><i class="fa-solid fa-envelope"></i> Email :</label>
       <input type="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required />
     </div>
 
     <div class="form-group">
-      <label for="location">📍 Localisation :</label>
+      <label for="location"><i class="fa-solid fa-map-marker-alt"></i> Localisation :</label>
       <input type="text" name="location" id="location" value="<?= htmlspecialchars($user['location'] ?? '') ?>" />
     </div>
 
     <div class="form-group">
-      <label for="birthdate">🎂 Date de naissance :</label>
+      <label for="birthdate"><i class="fa-solid fa-calendar-alt"></i> Date de naissance :</label>
       <input type="date" name="birthdate" id="birthdate" value="<?= htmlspecialchars($user['birthdate'] ?? '') ?>" />
     </div>
 
     <div class="form-group">
-      <label for="bio">📝 Biographie :</label>
+      <label for="bio"><i class="fa-solid fa-user-edit"></i> Biographie :</label>
       <textarea name="bio" id="bio"><?= htmlspecialchars($user['bio'] ?? '') ?></textarea>
     </div>
 
     <div class="form-group">
-      <label for="avatar">🖼️ Photo de profil :</label>
+      <label for="avatar"><i class="fa-solid fa-image"></i> Photo de profil :</label>
       <input type="file" name="avatar" id="avatar" accept="image/*" />
       <?php if (!empty($user['avatar'])): ?>
         <div class="avatar-preview">
@@ -141,16 +143,16 @@ $stmt->close();
     </div>
 
     <div class="form-group">
-      <label for="new_password">🔒 Nouveau mot de passe :</label>
+      <label for="new_password"><i class="fa-solid fa-lock"></i> Nouveau mot de passe :</label>
       <input type="password" name="new_password" id="new_password" placeholder="Laisser vide pour ne pas changer" />
     </div>
 
     <div class="form-group">
-      <label for="confirm_password">🔁 Confirmer le mot de passe :</label>
+      <label for="confirm_password"><i class="fa-solid fa-lock"></i> Confirmer le mot de passe :</label>
       <input type="password" name="confirm_password" id="confirm_password" />
     </div>
 
-    <button type="submit" class="btn-save">💾 Enregistrer les modifications</button>
+    <button type="submit" class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Enregistrer les modifications</button>
     <a href="javascript:history.back()" class="btn-back">← Retour</a>
   </form>
 </main>
