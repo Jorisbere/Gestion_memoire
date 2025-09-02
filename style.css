@@ -88,17 +88,17 @@
       object-fit: cover;
     }
 
-/* ====== BUTTON ====== */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #0b4064;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  margin-top: 20px;
-  transition: background 0.3s;
-}
+    /* ====== BUTTON ====== */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
 
     .btn:hover {
       background: #2980b9;
