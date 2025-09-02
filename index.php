@@ -223,9 +223,9 @@ form button:hover {
 
 
 <main>
-  <img src="assets/images/bJxrtjp71wqT9CVJ.webp" alt="Logo Fiscal" class="logo">
-  <h1>Bienvenue sur votre tableau fiscal</h1>
-  <p>Gérez vos déclarations, visualisez vos revenus, suivez vos performances et accédez à des outils fiscaux intelligents.</p>
+  <img src="assets/images/télécharger.png" alt="Logo Fiscal" class="logo">
+  <h1>Bienvenue sur votre votre application de gestion des mémoires académiques de U-AUBEN </h1>
+  <p></p>
 
   <div class="buttons">
     <a href="register.php" class="button">📝 S’inscrire</a>
@@ -233,14 +233,25 @@ form button:hover {
   </div>
 </main>
 
-<footer>
-  &copy; <?= date('Y') ?> Tableau Fiscal. Tous droits réservés.
-  <div class="links">
-    <a href="help.php">Aide</a>
-    <a href="contact.php">Contact</a>
-    <a href="terms.php">Conditions</a>
+<footer class="academic-footer">
+  <div class="footer-content">
+    <div class="footer-branding">
+      <strong>Gestion de Mémoire</strong><br>
+      <small>Plateforme académique pour le suivi des mémoires, protocoles et soutenances</small>
+    </div>
+
+    <div class="footer-links">
+      <a href="help.php">📘 Aide</a>
+      <a href="contact.php">📨 Contact</a>
+      <a href="terms.php">📄 Conditions</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; <?= date('Y') ?> Gestion de Mémoire. Tous droits réservés.
   </div>
 </footer>
+
 <!-- 🧠 Popup Aide -->
 <div id="helpPopup" class="popup-overlay" style="display: none;">
   <div class="popup-content">

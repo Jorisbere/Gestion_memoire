@@ -292,7 +292,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   </aside>
 
   <main>
-    <img src="assets/images/bJxrtjp71wqT9CVJ.webp" alt="Logo Fiscal" class="logo">
+    <img src="assets/images/télécharger.jpg" alt="Logo Fiscal" class="logo">
     <h1>Bienvenue <?= $username ?> 👋</h1>
     <p>Gérez vos déclarations, visualisez vos revenus, suivez vos performances et accédez à des outils fiscaux intelligents.</p>
   </main>
