@@ -294,7 +294,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
         <a href="forms/admin_soutenance.php"><i class="fa-solid fa-file"></i> Consultation des Soutenances</a>
         <a href="forms/memoires_consultation.php"><i class="fa-solid fa-book"></i> Consultation des mémoires finaux</a>
         <a href="forms/memoires_archive.php"><i class="fa-solid fa-chart-bar"></i> Memoires Archiver</a>
-        <a href="forms/memoires_archive.php"><i class="fa-solid fa-user-graduate"></i> Liste Etudiants Suivis</a>
+        <a href="forms/liste_etudiants.php"><i class="fa-solid fa-user-graduate"></i> Liste Etudiants Suivis</a>
       <?php endif; ?>
       <a href="logout.php"><i class="fa-solid fa-door-open"></i> Déconnexion</a>
     </nav>

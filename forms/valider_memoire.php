@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/db.php';
+require_once '../includes/mailer.php'; // adapte le chemin
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'DM') {
     header("Location: ../login.php");
@@ -16,6 +17,12 @@ if ($id && in_array($action, ['valider', 'rejeter'])) {
     $stmt->bind_param("si", $etat, $id);
     $stmt->execute();
     $_SESSION['notification'] = "Mémoire mis à jour : $etat.";
+
+    $email = 'etudiant@example.com';
+    $sujet = '📄 Votre demande a été validée';
+    $message = "Bonjour,\n\nVotre demande de soutenance a été validée.\n\nCordialement,\nL'équipe académique";
+
+    envoyerEmail($email, $sujet, $message);
 }
 
 // 🔄 Enregistrement des actions dans historique_actions
