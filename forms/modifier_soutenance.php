@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f9;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
       padding: 40px;
       color: #333;
     }

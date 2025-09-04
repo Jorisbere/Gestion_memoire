@@ -93,9 +93,9 @@ function getRejectedCount($conn, $table, $encadrant) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-   j;;;;_ body {
+  body {
   font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
+  background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
   margin: 12px 12px 12px 12px;
   padding: 12px 12px 12px 12px;
 }
@@ -109,7 +109,7 @@ function getRejectedCount($conn, $table, $encadrant) {
     .dashboard {
        max-width: 1200px;
       margin: auto;
-      background:rgb(229, 232, 232);
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
       padding: 40px 20px;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -180,7 +180,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 
 
 .chart-card {
-  background:rgb(229, 232, 232);
+  background:rgb(221, 222, 222);
   border-radius: 16px;
   padding: 30px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -189,7 +189,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 .recent-actions {
-  background:rgb(229, 232, 232);
+  background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
   border-left: 6px solid #f1edd4ff;
   padding: 20px;
   border-radius: 10px;
@@ -454,7 +454,7 @@ function getRejectedCount($conn, $table, $encadrant) {
           $etudiant = !empty($row['etudiant']) ? htmlspecialchars($row['etudiant']) : 'Nom inconnu';
           $date = !empty($row['date_action']) ? date("d/m/Y à H:i", strtotime($row['date_action'])) : 'Date inconnue';
 
-          echo "<li style='margin-bottom:12px; padding:10px; background:#f9f9f9; border-left:6px solid $color; border-radius:8px;'>
+          echo "<li style='margin-bottom:12px; padding:10px; background:rgb(229, 232, 232); border-left:6px solid $color; border-radius:8px;'>
                   $icon <strong>" . ucfirst($type) . "</strong> de <strong>$etudiant</strong> 
                   <span style='color:$color; font-weight:bold;'>$etat_label</span> 
                   le $date
