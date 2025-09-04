@@ -72,6 +72,7 @@ $dm_name = $stmt->fetchColumn();
     h2 {
       text-align: center;
       margin-bottom: 30px;
+      color: #0078D7;
     }
     .search-filter-bar {
       display: flex;

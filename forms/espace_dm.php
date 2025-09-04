@@ -304,7 +304,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 .soutenance.attente { background: linear-gradient(135deg, #FF9800, #FFB74D); }
 .soutenance.validée { background: linear-gradient(135deg, #4CAF50, #81C784); }
 .soutenance.rejetée { background: linear-gradient(135deg, #F44336, #E57373); }
-.memoire.attente { background: linear-gradient(135deg,rgb(71, 71, 77),rgb(111, 112, 115)); }
+.memoire.attente { background: linear-gradient(135deg,rgb(117, 117, 228),rgb(200, 210, 239)); }
 .memoire.validée { background: linear-gradient(135deg, #009688, #4DB6AC); }
 .memoire.rejetée { background: linear-gradient(135deg, #D32F2F, #EF5350); }
 
