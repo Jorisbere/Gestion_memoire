@@ -375,9 +375,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </style>
 </head>
 <body>
-  <div class="back-button">
+  <!-- <div class="back-button">
     <a href="programmer_soutenance.php">← Retour à la liste des soutenances</a>
-  </div>
+  </div> -->
 
   <!-- ✅ Overlay de chargement -->
   <div id="loading-overlay" class="loading-overlay" aria-hidden="true">

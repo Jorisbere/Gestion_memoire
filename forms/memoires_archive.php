@@ -146,10 +146,10 @@ $result = $stmt->get_result();
 <body>
   <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div class="gm-main">
-    <div class="back-button">
+    <!-- <div class="back-button"> -->
       <!-- <a href="../dashboard.php">← Retour au tableau de bord</a> -->
-      <a href="javascript:history.back()" class="btn-back">← Retour au tableau de bord</a>
-    </div>
+      <!-- <a href="javascript:history.back()" class="btn-back">← Retour au tableau de bord</a>
+    </div> -->
 
     <h2><i class="fa-solid fa-folder-open"></i> Mémoires Archivés</h2>
 

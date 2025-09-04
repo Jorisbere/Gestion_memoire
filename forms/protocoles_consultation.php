@@ -244,9 +244,9 @@ while ($dm = $dm_result->fetch_assoc()) {
   </aside>
 
   <main class="main">
-    <div class="back-button">
+    <!-- <div class="back-button">
       <a href="../dashboard.php">← Retour au tableau de bord</a>
-    </div>
+    </div> -->
 
     <!-- ✅ Overlay de chargement -->
     <div id="loading-overlay" class="loading-overlay" aria-hidden="true">

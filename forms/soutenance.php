@@ -87,7 +87,7 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir envoyer c
     button:hover { background: #0056a3; }
     .message { margin-top: 20px; padding: 14px; border-radius: 10px; font-weight: 500; text-align: center; }
     .success { background: #d4edda; color: #155724; }
-    .error { background: #f8d7da; color: #721c24; }
+    .error { background:rgb(151, 206, 248); color: rgb(200, 47, 62); }
     .back-button { text-align: center; margin-bottom: 20px; }
     .back-button a { text-decoration: none; color: #0078D7; font-weight: bold; }
   </style>
@@ -135,9 +135,9 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir envoyer c
       <div class="button-container">
         <button type="submit">Envoyer la demande</button>
       </div>
-      <div class="back-button">
+      <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>
-      </div>
+      </div> -->
 
       <?php if ($success): ?>
         <div class="message success"><?= htmlspecialchars($success) ?></div>

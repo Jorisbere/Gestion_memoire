@@ -90,7 +90,7 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir déposer 
     button:hover { background: #0056a3; }
     .message { margin-top: 20px; padding: 14px; border-radius: 10px; font-weight: 500; text-align: center; }
           .success { background:rgb(229, 232, 232); color: #333; }
-    .error { background:rgb(229, 232, 232); color: #333; }
+    .error { background:rgb(151, 206, 248); color: rgb(200, 47, 62); }
 
     select { width: 100%; padding: 12px; margin-top: 8px; border-radius: 10px; border: 1px solid #ccc; font-size: 15px; background:rgb(229, 232, 232); }
     @media (max-width: 600px) { form { padding: 20px; } h2 { font-size: 20px; } button { width: 100%; } }
@@ -147,9 +147,9 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir déposer 
       <div class="button-container">
         <button type="submit">Déposer</button>
       </div>
-      <div class="back-button">
+      <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>
-      </div>
+      </div> -->
 
       <?php if ($success): ?>
         <div class="message success"><?= htmlspecialchars($success) ?></div>

@@ -101,9 +101,9 @@ $dm_name = $stmt->fetchColumn();
 <body>
   <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div class="gm-main">
-    <div class="back-button">
+    <!-- <div class="back-button">
     <a href="../accueil.php">← Retour au tableau de bord</a>
-  </div>
+  </div> -->
 
 <h2><i class="fas fa-users"></i> Étudiants encadrés par <?= htmlspecialchars($dm_name) ?></h2>
 

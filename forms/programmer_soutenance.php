@@ -282,155 +282,83 @@ $result = $stmt->get_result();
     }
 
     /* ✅ Styles pour la barre de recherche et filtres */
-    .filter-form {
-      text-align: center;
-      margin-bottom: 30px;
+    .search-form {
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: row;
       align-items: center;
-      padding: 25px;
-      background:rgb(229, 232, 232);
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      border: 1px solid #e1e5e9;
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+      background: none;
+      padding: 0;
     }
-
-    .filter-form > div {
+    .search-form > div {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .filter-form label {
-      font-weight: 600;
-      color: #555;
-      font-size: 16px;
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .filter-form input[type="text"] {
-      min-width: 320px;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: 2px solid #e1e5e9;
+    .search-form input,
+    .search-form select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
       font-size: 14px;
-      transition: all 0.3s ease;
-      background-color: #f8f9fa;
     }
-
-    .filter-form input[type="text"]:focus {
-      outline: none;
-      border-color: #0078D7;
-      box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.15);
-      background-color:rgb(229, 232, 232);
-    }
-
-    .filter-form input[type="text"]::placeholder {
-      color: #888;
-      font-style: italic;
-    }
-
-    .filter-form select {
-      min-width: 200px;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: 2px solid #e1e5e9;
-      font-size: 14px;
-      background-color: #f8f9fa;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-
-    .filter-form select:focus {
-      outline: none;
-      border-color: #0078D7;
-      box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.15);
-      background-color:rgb(229, 232, 232);
-    }
-
-    .filter-form button {
-      padding: 14px 28px;
-      background: linear-gradient(135deg, #0078D7, #106ebe);
-      color: #333;
+    .search-form button {
+      padding: 10px 20px;
+      background: #0078D7;
+      color: #fff;
       border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      min-width: 140px;
-      box-shadow: 0 2px 8px rgba(0, 120, 215, 0.3);
+      font-weight: bold;
+      margin-left: 8px;
     }
-
-    .filter-form button:hover {
-      background: linear-gradient(135deg, #106ebe, #005a9e);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 120, 215, 0.4);
-    }
-
-    .filter-form button:active {
-      transform: translateY(0);
+    .search-form button:hover {
+      background: #005fa3;
     }
 
     /* Responsive design */
     @media (max-width: 1200px) {
-      .filter-form {
-        gap: 15px;
-        padding: 20px;
+      .search-form {
+        gap: 10px;
+        flex-wrap: wrap;
       }
-      
-      .filter-form input[type="text"] {
-        min-width: 280px;
-      }
-      
-      .filter-form select {
-        min-width: 180px;
+      .search-form > div {
+        min-width: 220px;
       }
     }
-
     @media (max-width: 900px) {
-      .filter-form {
+      .search-form {
         flex-direction: column;
-        gap: 15px;
         align-items: stretch;
+        gap: 12px;
+        max-width: 100%;
       }
-      
-      .filter-form > div {
-        justify-content: center;
-      }
-      
-      .filter-form input[type="text"],
-      .filter-form select {
-        min-width: 100%;
+      .search-form > div {
         width: 100%;
-        max-width: 400px;
+        justify-content: flex-start;
       }
-      
-      .filter-form button {
+      .search-form input,
+      .search-form select {
         width: 100%;
-        max-width: 200px;
-        margin: 0 auto;
+        min-width: 0;
+      }
+      .search-form button {
+        width: 100%;
+        margin-left: 0;
       }
     }
-
     @media (max-width: 600px) {
-      .filter-form {
-        padding: 20px 15px;
-        margin: 20px 10px;
+      .search-form {
+        padding: 0 5px;
+        margin: 20px 0 20px 0;
       }
-      
-      .filter-form input[type="text"],
-      .filter-form select {
-        max-width: 100%;
+      .search-form input,
+      .search-form select {
         padding: 12px 16px;
       }
-      
-      .filter-form button {
-        max-width: 100%;
+      .search-form button {
         padding: 12px 20px;
       }
     }
@@ -464,9 +392,9 @@ $result = $stmt->get_result();
     </nav>
   </aside>
   <main class="main">
-    <div class="back-button">
+    <!-- <div class="back-button">
     <a href="../dashboard.php">← Retour au tableau de bord</a>
-  </div>
+  </div> -->
 
   <!-- ✅ Overlay de chargement -->
   <div id="loading-overlay" class="loading-overlay" aria-hidden="true">
@@ -483,13 +411,12 @@ $result = $stmt->get_result();
     <button onclick="document.getElementById('notification').style.display='none'">✖</button>
   </div>
 
-  <form method="get" class="filter-form">
-    <div style="display: flex; align-items: center; gap: 8px;">
+  <form method="get" class="search-form">
+    <div>
       <label for="search">🔍</label>
       <input type="text" name="search" id="search" placeholder="Rechercher par titre, auteur ou encadrant" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
     </div>
-
-    <div style="display: flex; align-items: center; gap: 8px;">
+    <div>
       <label for="programmation">📌</label>
       <select name="programmation" id="programmation">
         <option value="">Tous</option>
@@ -497,8 +424,7 @@ $result = $stmt->get_result();
         <option value="non_programmee" <?= ($_GET['programmation'] ?? '') === 'non_programmee' ? 'selected' : '' ?>>⏳ Non programmées</option>
       </select>
     </div>
-
-    <div style="display: flex; align-items: center; gap: 8px;">
+    <div>
       <label for="annee">📅</label>
       <select name="annee" id="annee">
         <option value="">Toutes les années</option>
@@ -511,7 +437,6 @@ $result = $stmt->get_result();
         ?>
       </select>
     </div>
-
     <button type="submit">Filtrer</button>
   </form>
 

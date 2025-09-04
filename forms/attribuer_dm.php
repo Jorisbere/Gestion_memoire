@@ -265,9 +265,9 @@ while ($user = $result->fetch_assoc()) {
   <button type="submit" name="action" value="attribuer">Attribuer le rôle DM</button>
   <button type="submit" name="action" value="revoquer" style="background:#d9534f;">Révoquer le rôle DM</button>
 
-  <div class="back-button">
+  <!-- <div class="back-button">
     <a href="../dashboard.php">← Retour au tableau de bord</a>
-  </div>
+  </div> -->
 </form>
 
 

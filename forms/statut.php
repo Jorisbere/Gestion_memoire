@@ -247,9 +247,9 @@ function renderBadge($status) {
             </tbody>
         </table>
 
-        <div class="back-button">
+        <!-- <div class="back-button">
             <a href="../accueil.php">← Retour au tableau de bord</a>
-        </div>
+        </div> -->
       </div>
     </div>
 </body>

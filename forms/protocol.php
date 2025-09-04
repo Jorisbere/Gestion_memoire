@@ -184,10 +184,7 @@ function confirmerDepot() {
     color: #155724;
   }
 
-  .error {
-    background: #f8d7da;
-    color: #721c24;
-  }
+  .error { background:rgb(151, 206, 248); color: rgb(200, 47, 62); }
 
   @media (max-width: 600px) {
     form {
@@ -251,9 +248,9 @@ function confirmerDepot() {
       <div class="button-container">
         <button type="submit">Déposer</button>
       </div>
-      <div class="back-button">
+      <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>
-      </div>
+      </div> -->
 
       <?php if ($success): ?>
         <div class="message success"><?= htmlspecialchars($success) ?></div>

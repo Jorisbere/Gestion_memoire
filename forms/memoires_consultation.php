@@ -128,9 +128,9 @@ $result = $stmt->get_result();
 <body>
   <?php include __DIR__ . '/../includes/sidebar.php'; ?>
   <div class="gm-main">
-    <div class="back-button">
+    <!-- <div class="back-button">
       <a href="../accueil.php">← Retour au tableau de bord</a>
-    </div>
+    </div> -->
 
     <!-- ✅ Overlay de chargement -->
     <div id="loading-overlay" class="loading-overlay" aria-hidden="true">
