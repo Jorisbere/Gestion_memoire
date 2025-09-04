@@ -86,13 +86,13 @@ $statut_memoire = $memoire_info['etat_validation'];
 function renderBadge($status) {
     switch ($status) {
         case 'valide':
-            return "<span class='badge success'>Validé</span>";
+            return "<span class='badge success'><i class='fa-solid fa-check'></i> Validé</span>";
         case 'rejete':
-            return "<span class='badge error'>Rejeté</span>";
+            return "<span class='badge error'><i class='fa-solid fa-times'></i> Rejeté</span>";
         case 'en_attente':
-            return "<span class='badge pending'>En attente</span>";
+            return "<span class='badge pending'><i class='fa-solid fa-clock'></i> En attente</span>";
         default:
-            return "<span class='badge neutral'>Non déposé</span>";
+            return "<span class='badge neutral'><i class='fa-solid fa-file'></i> Non déposé</span>";
     }
 }
 ?>
@@ -199,12 +199,12 @@ function renderBadge($status) {
                     <td><?= renderBadge($statut_protocole) ?></td>
                     <td>
                         <?php if ($statut_protocole === 'valide'): ?>
-                            Titre : <strong><?= !empty($protocole_info['titre']) ? htmlspecialchars($protocole_info['titre']) : '—' ?></strong><br>
+                            <i class="fa-solid fa-file-alt"></i> Titre : <strong><?= !empty($protocole_info['titre']) ? htmlspecialchars($protocole_info['titre']) : '—' ?></strong><br>
                             <?php if (!empty($protocole_info['date_depot'])): ?>
-                                Date : <strong><?= date("d/m/Y H:i", strtotime($protocole_info['date_depot'])) ?></strong><br>
+                            <i class="fa-solid fa-calendar-alt"></i> Date : <strong><?= date("d/m/Y H:i", strtotime($protocole_info['date_depot'])) ?></strong><br>
                             <?php endif; ?>
                             <?php if (!empty($protocole_info['dm_nom'])): ?>
-                                DM : <strong><?= htmlspecialchars($protocole_info['dm_nom']) ?></strong>
+                            <i class="fa-solid fa-user-tie"></i> DM : <strong><?= htmlspecialchars($protocole_info['dm_nom']) ?></strong>
                             <?php endif; ?>
                         <?php else: ?>
                             —
@@ -217,12 +217,12 @@ function renderBadge($status) {
                     <td><?= renderBadge($statut_soutenance) ?></td>
                     <td>
                         <?php if ($statut_soutenance === 'valide'): ?>
-                            Titre : <strong><?= !empty($soutenance_info['titre']) ? htmlspecialchars($soutenance_info['titre']) : '—' ?></strong><br>
+                            <i class="fa-solid fa-file-alt"></i> Titre : <strong><?= !empty($soutenance_info['titre']) ? htmlspecialchars($soutenance_info['titre']) : '—' ?></strong><br>
                             <?php if (!empty($soutenance_info['date_soutenance'])): ?>
-                                Date : <strong><?= date("d/m/Y H:i", strtotime($soutenance_info['date_soutenance'])) ?></strong><br>
+                            <i class="fa-solid fa-calendar-alt"></i> Date : <strong><?= date("d/m/Y H:i", strtotime($soutenance_info['date_soutenance'])) ?></strong><br>
                             <?php endif; ?>
                             <?php if (!empty($soutenance_info['salle'])): ?>
-                                Salle : <strong><?= htmlspecialchars($soutenance_info['salle']) ?></strong>
+                            <i class="fa-solid fa-door-open"></i> Salle : <strong><?= htmlspecialchars($soutenance_info['salle']) ?></strong>
                             <?php endif; ?>
                         <?php else: ?>
                             —
