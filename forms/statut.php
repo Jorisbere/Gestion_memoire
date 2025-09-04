@@ -181,9 +181,10 @@ function renderBadge($status) {
 </head>
 <body>
     <?php include __DIR__ . '/../includes/sidebar.php'; ?>
-    <div class="gm-main">
-      <div class="container">
-        <h2><i class="fa-solid fa-file"></i> Statut de vos documents</h2>
+    <main class="main">
+        <div class="gm-main">
+            <div class="container">
+                <h2><i class="fa-solid fa-file"></i> Statut de vos documents</h2>
 
         <table>
             <thead>
@@ -252,5 +253,6 @@ function renderBadge($status) {
         </div> -->
       </div>
     </div>
+  </main>
 </body>
 </html>

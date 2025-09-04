@@ -205,6 +205,153 @@ if ($sbRole === 'etudiant') {
   .dark-mode .badge.bg-warning { background: #ffb300 !important; color: #232733 !important; }
   /* Fin badges */
 
+  /* === DARK MODE POUR LES FORMULAIRES DE REMPLISSAGE === */
+  .dark-mode form,
+  .dark-mode .form-container,
+  .dark-mode .form-box,
+  .dark-mode .form-section,
+  .dark-mode .container,
+  .dark-mode .container-fluid,
+  .dark-mode .content-container {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    border: 1px solid #333 !important;
+  }
+  .dark-mode form label,
+  .dark-mode .form-label {
+    color: #b3e5fc !important;
+  }
+  .dark-mode form input,
+  .dark-mode form textarea,
+  .dark-mode form select,
+  .dark-mode .form-control,
+  .dark-mode .form-select,
+  .dark-mode .form-input,
+  .dark-mode .form-textarea {
+    background: #181b22 !important;
+    color: #e7e7e7 !important;
+    border: 1px solid #444 !important;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .dark-mode form input:focus,
+  .dark-mode form textarea:focus,
+  .dark-mode form select:focus,
+  .dark-mode .form-control:focus,
+  .dark-mode .form-select:focus,
+  .dark-mode .form-input:focus,
+  .dark-mode .form-textarea:focus {
+    background: #232733 !important;
+    color: #fff !important;
+    border-color: #4fc3f7 !important;
+    outline: none;
+  }
+  .dark-mode form button,
+  .dark-mode .form-button,
+  .dark-mode input[type="submit"],
+  .dark-mode input[type="button"] {
+    background: #1565c0 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .dark-mode form button:hover,
+  .dark-mode .form-button:hover,
+  .dark-mode input[type="submit"]:hover,
+  .dark-mode input[type="button"]:hover {
+    background: #1976d2 !important;
+  }
+  .dark-mode .form-hint,
+  .dark-mode .form-help {
+    color: #b3e5fc !important;
+  }
+  .dark-mode .form-error,
+  .dark-mode .form-error-message {
+    color: #ffbdbd !important;
+    background: #2d1b1b !important;
+    border: 1px solid #b71c1c !important;
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .dark-mode .form-success,
+  .dark-mode .form-success-message {
+    color: #b9f6ca !important;
+    background: #1e2e1e !important;
+    border: 1px solid #388e3c !important;
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  /* Pour les champs désactivés */
+  .dark-mode form input:disabled,
+  .dark-mode form textarea:disabled,
+  .dark-mode form select:disabled {
+    background: #232733 !important;
+    color: #888 !important;
+    opacity: 0.7;
+  }
+  /* Pour les champs readonly */
+  .dark-mode form input[readonly],
+  .dark-mode form textarea[readonly] {
+    background: #232733 !important;
+    color: #b3e5fc !important;
+    opacity: 0.9;
+  }
+  /* Pour les fieldset et legend */
+  .dark-mode form fieldset {
+    border: 1px solid #444 !important;
+    background: #181b22 !important;
+  }
+  .dark-mode form legend {
+    color: #4fc3f7 !important;
+    background: transparent !important;
+  }
+  /* Pour les input file */
+  .dark-mode input[type="file"] {
+    color: #e7e7e7 !important;
+    background: #232733 !important;
+    border: 1px solid #444 !important;
+  }
+  /* Pour les checkboxes et radios */
+  .dark-mode input[type="checkbox"],
+  .dark-mode input[type="radio"] {
+    accent-color: #4fc3f7 !important;
+    background: #232733 !important;
+    border: 1px solid #444 !important;
+  }
+  /* Pour les select option */
+  .dark-mode select option {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+  }
+  /* Pour les placeholders */
+  .dark-mode ::placeholder {
+    color: #b3e5fc !important;
+    opacity: 1;
+  }
+  /* Pour les form-group ou row */
+  .dark-mode .form-group,
+  .dark-mode .row {
+    background: transparent !important;
+  }
+  /* Pour les input-group */
+  .dark-mode .input-group-text {
+    background: #232733 !important;
+    color: #b3e5fc !important;
+    border: 1px solid #444 !important;
+  }
+  /* Pour les progress bar dans les formulaires */
+  .dark-mode .progress-bar {
+    background: #4fc3f7 !important;
+    color: #232733 !important;
+  }
+  /* Pour les labels obligatoires */
+  .dark-mode label.required:after {
+    color: #ffbdbd !important;
+  }
+  /* Fin dark mode formulaires */
 </style>
 
 <aside class="sidebar">
@@ -273,6 +420,7 @@ if ($sbRole === 'etudiant') {
 
     // Dark mode (identique à accueil.php)
     const darkToggleBtn = document.getElementById('darkToggle');
+    // Appliquer le dark mode si déjà activé
     if (localStorage.getItem('darkMode') === 'true') {
       document.body.classList.add('dark-mode');
     }
@@ -288,5 +436,28 @@ if ($sbRole === 'etudiant') {
         }
       });
     }
+
+    // Pour forcer le dark mode sur les formulaires et containers dynamiquement ajoutés (ex: AJAX)
+    const observer = new MutationObserver(() => {
+      if (document.body.classList.contains('dark-mode')) {
+        document.querySelectorAll('form, .form-container, .form-box, .form-section, .container, .container-fluid, .content-container').forEach(el => {
+          el.classList.add('dark-mode');
+        });
+      } else {
+        document.querySelectorAll('form, .form-container, .form-box, .form-section, .container, .container-fluid, .content-container').forEach(el => {
+          el.classList.remove('dark-mode');
+        });
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Appliquer la classe dark-mode sur les formulaires et containers déjà présents au chargement
+    window.addEventListener('DOMContentLoaded', function() {
+      if (document.body.classList.contains('dark-mode')) {
+        document.querySelectorAll('form, .form-container, .form-box, .form-section, .container, .container-fluid, .content-container').forEach(el => {
+          el.classList.add('dark-mode');
+        });
+      }
+    });
   })();
 </script>

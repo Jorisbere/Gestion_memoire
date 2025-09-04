@@ -204,11 +204,12 @@ function confirmerDepot() {
 </head>
 <body>
   <?php include __DIR__ . '/../includes/sidebar.php'; ?>
-  <div class="gm-main">
-    <form method="POST" enctype="multipart/form-data" onsubmit="return confirmerDepot();">
-      <?php if ($last_protocole): ?>
-      <?php
-        // Définir le badge selon le statut
+  <main class="main">
+    <div class="gm-main">
+      <form method="POST" enctype="multipart/form-data" onsubmit="return confirmerDepot();">
+        <?php if ($last_protocole): ?>
+        <?php
+          // Définir le badge selon le statut
         $etat = strtolower($last_protocole['etat_validation']);
         $badge = '';
         switch ($etat) {
@@ -259,5 +260,6 @@ function confirmerDepot() {
       <?php endif; ?>
     </form>
   </div>
+</main>
 </body>
 </html>
