@@ -81,10 +81,12 @@ function confirmerDepot() {
   <style>
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #eef2f3, #dfe9f3);
+    background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%); 
     padding: 40px;
     color: #333;
   }
+  @media (min-width: 901px) { .gm-main { padding-left: 280px; } }
+  @media (max-width: 900px) { .gm-main { padding-top: 80px; } }
 
   .back-button {
     text-align: center;
@@ -104,7 +106,7 @@ function confirmerDepot() {
   }
 
   form {
-    background: #fff;
+    background:rgb(229, 232, 232);
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -123,7 +125,7 @@ function confirmerDepot() {
     display: block;
     margin-top: 15px;
     font-weight: 600;
-    color: #444;
+    color: #333;
   }
 
   input[type="text"],
@@ -135,7 +137,7 @@ function confirmerDepot() {
     border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 15px;
-    background: #f9f9f9;
+    background:rgb(229, 232, 232);
     transition: border-color 0.3s ease;
   }
 
@@ -149,7 +151,7 @@ function confirmerDepot() {
     margin-top: 25px;
     padding: 14px 24px;
     background: #0078D7;
-    color: #fff;
+    color: #333;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -204,58 +206,61 @@ function confirmerDepot() {
 
 </head>
 <body>
-  <form method="POST" enctype="multipart/form-data" onsubmit="return confirmerDepot();">
-    <?php if ($last_protocole): ?>
-  <?php
-    // Définir le badge selon le statut
-    $etat = strtolower($last_protocole['etat_validation']);
-    $badge = '';
-    switch ($etat) {
-      case 'valide':
-        $badge = '<span style="color:green; font-weight:bold;">🟢 Validé</span>';
-        break;
-      case 'rejete':
-        $badge = '<span style="color:red; font-weight:bold;">🔴 Rejeté</span>';
-        break;
-      default:
-        $badge = '<span style="color:orange; font-weight:bold;">🟡 En attente</span>';
-        break;
-    }
-  ?>
-  <!-- <div class="message" style="background:#f0f4ff; border:1px solid #cce; margin-bottom:20px;">
-    <strong>📌 Dernier protocole déposé :</strong><br>
-    <span><strong>Titre :</strong> <?= htmlspecialchars($last_protocole['titre']) ?></span><br>
-    <span><strong>Statut :</strong> <?= $badge ?></span><br>
-    <span><strong>Date :</strong> <?= date('d/m/Y à H:i', strtotime($last_protocole['date_depot'])) ?></span><br>
-    <?php if (!empty($last_protocole['fichier_path']) && file_exists($last_protocole['fichier_path'])): ?>
-      <a href="<?= $last_protocole['fichier_path'] ?>" target="_blank" style="color:#0078D7; font-weight:bold;"><i class="fa-solid fa-download"></i> Télécharger le fichier</a>
-    <?php endif; ?>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
+  <div class="gm-main">
+    <form method="POST" enctype="multipart/form-data" onsubmit="return confirmerDepot();">
+      <?php if ($last_protocole): ?>
+      <?php
+        // Définir le badge selon le statut
+        $etat = strtolower($last_protocole['etat_validation']);
+        $badge = '';
+        switch ($etat) {
+          case 'valide':
+            $badge = '<span style="color:green; font-weight:bold;">🟢 Validé</span>';
+            break;
+          case 'rejete':
+            $badge = '<span style="color:red; font-weight:bold;">🔴 Rejeté</span>';
+            break;
+          default:
+            $badge = '<span style="color:orange; font-weight:bold;">🟡 En attente</span>';
+            break;
+        }
+      ?>
+      <!-- <div class="message" style="background:#f0f4ff; border:1px solid #cce; margin-bottom:20px;">
+        <strong>📌 Dernier protocole déposé :</strong><br>
+        <span><strong>Titre :</strong> <?= htmlspecialchars($last_protocole['titre']) ?></span><br>
+        <span><strong>Statut :</strong> <?= $badge ?></span><br>
+        <span><strong>Date :</strong> <?= date('d/m/Y à H:i', strtotime($last_protocole['date_depot'])) ?></span><br>
+        <?php if (!empty($last_protocole['fichier_path']) && file_exists($last_protocole['fichier_path'])): ?>
+          <a href="<?= $last_protocole['fichier_path'] ?>" target="_blank" style="color:#0078D7; font-weight:bold;"><i class="fa-solid fa-download"></i> Télécharger le fichier</a>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?> -->
+
+      <h2><i class="fa-solid fa-file"></i> Dépot de protocole</h2>
+      <label for="titre">Titre du protocole</label>
+      <input type="text" name="titre" id="titre" required>
+
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="5" required></textarea>
+
+      <label for="fichier">Fichier PDF</label>
+      <small style="color:#666;">Taille maximale autorisée : 20 Mo</small>
+      <input type="file" name="fichier" id="fichier" accept=".pdf" required>
+
+      <div class="button-container">
+        <button type="submit">Déposer</button>
+      </div>
+      <div class="back-button">
+        <a href="../accueil.php">← Retour au tableau de bord</a>
+      </div>
+
+      <?php if ($success): ?>
+        <div class="message success"><?= htmlspecialchars($success) ?></div>
+      <?php elseif ($error): ?>
+        <div class="message error"><?= htmlspecialchars($error) ?></div>
+      <?php endif; ?>
+    </form>
   </div>
-<?php endif; ?> -->
-
-    <h2><i class="fa-solid fa-file"></i> Dépot de protocole</h2>
-    <label for="titre">Titre du protocole</label>
-    <input type="text" name="titre" id="titre" required>
-
-    <label for="description">Description</label>
-    <textarea name="description" id="description" rows="5" required></textarea>
-
-    <label for="fichier">Fichier PDF</label>
-    <small style="color:#666;">Taille maximale autorisée : 20 Mo</small>
-    <input type="file" name="fichier" id="fichier" accept=".pdf" required>
-
-    <div class="button-container">
-    <button type="submit">Déposer</button>
-    </div>
-    <div class="back-button">
-    <a href="../accueil.php">← Retour au tableau de bord</a>
-    </div>
-
-    <?php if ($success): ?>
-      <div class="message success"><?= htmlspecialchars($success) ?></div>
-    <?php elseif ($error): ?>
-      <div class="message error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-  </form>
 </body>
 </html>

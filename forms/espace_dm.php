@@ -95,9 +95,9 @@ function getRejectedCount($conn, $table, $encadrant) {
   <style>
    j;;;;_ body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f0f4f8;
-  margin: 0;
-  padding: 0;
+    background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
+  margin: 12px 12px 12px 12px;
+  padding: 12px 12px 12px 12px;
 }
 
     h2 {
@@ -109,7 +109,7 @@ function getRejectedCount($conn, $table, $encadrant) {
     .dashboard {
        max-width: 1200px;
       margin: auto;
-      background: #fff;
+      background:rgb(229, 232, 232);
       padding: 40px 20px;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -134,7 +134,7 @@ function getRejectedCount($conn, $table, $encadrant) {
   margin-bottom: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  color: #fff;
+  color: #333;
   font-size: 18px;
   font-weight: 500;
 }
@@ -180,7 +180,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 
 
 .chart-card {
-  background: #ffffff;
+  background:rgb(229, 232, 232);
   border-radius: 16px;
   padding: 30px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -189,7 +189,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 .recent-actions {
-  background: #f4f3f1ff;
+  background:rgb(229, 232, 232);
   border-left: 6px solid #f1edd4ff;
   padding: 20px;
   border-radius: 10px;
@@ -210,7 +210,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 .recent-actions li {
   margin-bottom: 10px;
   font-size: 16px;
-  color: #4e342e;
+  color: #333;
 }
 
 
@@ -259,7 +259,7 @@ function getRejectedCount($conn, $table, $encadrant) {
   max-width: 180px;
   padding: 10px 14px;
   border-radius: 10px;
-  color: white;
+  color: #333;
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
@@ -287,7 +287,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 .soutenance.attente { background: linear-gradient(135deg, #FF9800, #FFB74D); }
 .soutenance.validée { background: linear-gradient(135deg, #4CAF50, #81C784); }
 .soutenance.rejetée { background: linear-gradient(135deg, #F44336, #E57373); }
-.memoire.attente { background: linear-gradient(135deg, #464649ff, #323337ff); }
+.memoire.attente { background: linear-gradient(135deg,rgb(71, 71, 77),rgb(111, 112, 115)); }
 .memoire.validée { background: linear-gradient(135deg, #009688, #4DB6AC); }
 .memoire.rejetée { background: linear-gradient(135deg, #D32F2F, #EF5350); }
 
@@ -300,7 +300,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 .chart-box {
-  background: #fff;
+  background:rgb(229, 232, 232);
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -327,7 +327,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 }
 
 .chart-card {
-  background: #ffffff;
+  background:rgb(229, 232, 232);
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
@@ -337,7 +337,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 .chart-card h4 {
   margin-bottom: 12px;
   font-size: 18px;
-  color: #1e2a38;
+  color: #333;
 }
 
 .chart-card canvas {
@@ -350,141 +350,142 @@ function getRejectedCount($conn, $table, $encadrant) {
   </style>
 </head>
 <body>
-  <div class="dashboard">
-  <h2>📁 Espace DM — Bienvenue <?= htmlspecialchars($dm_nom) ?> 👋</h2>
+  <!-- <?php include __DIR__ . '/../includes/sidebar.php'; ?> -->
+  <div class="gm-main">
+    <h2>📁 Espace DM — Bienvenue <?= htmlspecialchars($dm_nom) ?> 👋</h2>
 
-  <div class="stat-container">
-  <div class="stat-box encadres">
-    <div class="label"><i>👥</i> Étudiants encadrés</div>
-    <div class="value"><?= $nb_etudiants ?></div>
+    <div class="stat-container">
+    <div class="stat-box encadres">
+      <div class="label"><i>👥</i> Étudiants encadrés</div>
+      <div class="value"><?= $nb_etudiants ?></div>
+    </div>
+
+    <div class="stat-box soutenance attente">
+      <div class="label"><i>🕐</i> Soutenances en attente</div>
+      <div class="value"><?= $nb_soutenances ?></div>
+    </div>
+
+    <div class="stat-box soutenance validée">
+      <div class="label"><i>✅</i> Soutenances validées</div>
+      <div class="value"><?= $nb_soutenances_validées ?></div>
+    </div>
+
+    <div class="stat-box soutenance rejetée">
+      <div class="label"><i>❌</i> Soutenances rejetées</div>
+      <div class="value"><?= $nb_soutenances_rejetees ?></div>
+    </div>
+
+    <div class="stat-box memoire attente">
+      <div class="label"><i>📄</i> Mémoires en attente</div>
+      <div class="value"><?= $nb_memoires ?></div>
+    </div>
+
+    <div class="stat-box memoire validée">
+      <div class="label"><i>✅</i> Mémoires validés</div>
+      <div class="value"><?= $nb_memoires_validés ?></div>
+    </div>
+
+    <div class="stat-box memoire rejetée">
+      <div class="label"><i>❌</i> Mémoires rejetés</div>
+      <div class="value"><?= $nb_memoires_rejetés ?></div>
+    </div>
   </div>
 
-  <div class="stat-box soutenance attente">
-    <div class="label"><i>🕐</i> Soutenances en attente</div>
-    <div class="value"><?= $nb_soutenances ?></div>
-  </div>
-
-  <div class="stat-box soutenance validée">
-    <div class="label"><i>✅</i> Soutenances validées</div>
-    <div class="value"><?= $nb_soutenances_validées ?></div>
-  </div>
-
-  <div class="stat-box soutenance rejetée">
-    <div class="label"><i>❌</i> Soutenances rejetées</div>
-    <div class="value"><?= $nb_soutenances_rejetees ?></div>
-  </div>
-
-  <div class="stat-box memoire attente">
-    <div class="label"><i>📄</i> Mémoires en attente</div>
-    <div class="value"><?= $nb_memoires ?></div>
-  </div>
-
-  <div class="stat-box memoire validée">
-    <div class="label"><i>✅</i> Mémoires validés</div>
-    <div class="value"><?= $nb_memoires_validés ?></div>
-  </div>
-
-  <div class="stat-box memoire rejetée">
-    <div class="label"><i>❌</i> Mémoires rejetés</div>
-    <div class="value"><?= $nb_memoires_rejetés ?></div>
-  </div>
-</div>
 
 
+    <div class="recent-actions">
+    <h3>🕒 Dernières actions</h3>
+    <div style="max-height:300px; overflow-y:auto; padding-right:5px;">
+      <ul style="list-style:none; padding-left:0; margin:0;">
+        <?php
+        $historique = [];
 
-  <div class="recent-actions">
-  <h3>🕒 Dernières actions</h3>
-  <div style="max-height:300px; overflow-y:auto; padding-right:5px;">
-    <ul style="list-style:none; padding-left:0; margin:0;">
-      <?php
-      $historique = [];
+        $sql = "
+          SELECT 
+            u.username AS etudiant,
+            m.encadrant,
+            'Mémoire' AS type_demande,
+            m.etat_validation,
+            m.date_depot AS date_action
+          FROM memoires m
+          JOIN users u ON m.user_id = u.id
+          WHERE m.encadrant = ?
 
-      $sql = "
-        SELECT 
-          u.username AS etudiant,
-          m.encadrant,
-          'Mémoire' AS type_demande,
-          m.etat_validation,
-          m.date_depot AS date_action
-        FROM memoires m
-        JOIN users u ON m.user_id = u.id
-        WHERE m.encadrant = ?
+          UNION
 
-        UNION
+          SELECT 
+            u.username AS etudiant,
+            d.encadrant,
+            'Soutenance' AS type_demande,
+            d.etat_validation,
+            d.date_demande AS date_action
+          FROM demandes_soutenance d
+          JOIN users u ON d.user_id = u.id
+          WHERE d.encadrant = ?
 
-        SELECT 
-          u.username AS etudiant,
-          d.encadrant,
-          'Soutenance' AS type_demande,
-          d.etat_validation,
-          d.date_demande AS date_action
-        FROM demandes_soutenance d
-        JOIN users u ON d.user_id = u.id
-        WHERE d.encadrant = ?
+          ORDER BY date_action DESC
+          LIMIT 5
+        ";
 
-        ORDER BY date_action DESC
-        LIMIT 5
-      ";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $dm_nom, $dm_nom);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+          $type = strtolower($row['type_demande'] ?? '');
+          $etat = strtolower($row['etat_validation'] ?? '');
+          $icon = $type === 'mémoire' ? '📘' : '📄';
 
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("ss", $dm_nom, $dm_nom);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      while ($row = $result->fetch_assoc()) {
-        $type = strtolower($row['type_demande'] ?? '');
-        $etat = strtolower($row['etat_validation'] ?? '');
-        $icon = $type === 'mémoire' ? '📘' : '📄';
+          switch ($etat) {
+            case 'valide':
+              $color = 'green';
+              $etat_label = '✅ validée';
+              break;
+            case 'rejete':
+              $color = 'red';
+              $etat_label = '❌ rejetée';
+              break;
+            default:
+              $color = 'orange';
+              $etat_label = '🕐 en attente';
+              break;
+          }
 
-        switch ($etat) {
-          case 'valide':
-            $color = 'green';
-            $etat_label = '✅ validée';
-            break;
-          case 'rejete':
-            $color = 'red';
-            $etat_label = '❌ rejetée';
-            break;
-          default:
-            $color = 'orange';
-            $etat_label = '🕐 en attente';
-            break;
+          $etudiant = !empty($row['etudiant']) ? htmlspecialchars($row['etudiant']) : 'Nom inconnu';
+          $date = !empty($row['date_action']) ? date("d/m/Y à H:i", strtotime($row['date_action'])) : 'Date inconnue';
+
+          echo "<li style='margin-bottom:12px; padding:10px; background:#f9f9f9; border-left:6px solid $color; border-radius:8px;'>
+                  $icon <strong>" . ucfirst($type) . "</strong> de <strong>$etudiant</strong> 
+                  <span style='color:$color; font-weight:bold;'>$etat_label</span> 
+                  le $date
+                </li>";
         }
-
-        $etudiant = !empty($row['etudiant']) ? htmlspecialchars($row['etudiant']) : 'Nom inconnu';
-        $date = !empty($row['date_action']) ? date("d/m/Y à H:i", strtotime($row['date_action'])) : 'Date inconnue';
-
-        echo "<li style='margin-bottom:12px; padding:10px; background:#f9f9f9; border-left:6px solid $color; border-radius:8px;'>
-                $icon <strong>" . ucfirst($type) . "</strong> de <strong>$etudiant</strong> 
-                <span style='color:$color; font-weight:bold;'>$etat_label</span> 
-                le $date
-              </li>";
-      }
-      ?>
-    </ul>
-  </div>
-</div>
-
-
-  <div class="chart-section">
-  <h2>📊 Vue d’ensemble des validations</h2>
-
-  <div class="chart-grid">
-    <div class="chart-card">
-      <h4>Global</h4>
-      <canvas id="validationChart"></canvas>
-    </div>
-
-    <div class="chart-card">
-      <h4>Mémoires</h4>
-      <canvas id="memoireChart"></canvas>
-    </div>
-
-    <div class="chart-card">
-      <h4>Soutenances</h4>
-      <canvas id="soutenanceChart"></canvas>
+        ?>
+      </ul>
     </div>
   </div>
-</div>
+
+
+    <div class="chart-section">
+    <h2>📊 Vue d’ensemble des validations</h2>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Global</h4>
+        <canvas id="validationChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h4>Mémoires</h4>
+        <canvas id="memoireChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h4>Soutenances</h4>
+        <canvas id="soutenanceChart"></canvas>
+      </div>
+    </div>
+  </div>
 
 
 <div class="back-button">

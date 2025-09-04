@@ -85,7 +85,7 @@ if ($id_protocole && in_array($action, ['valider', 'rejeter'])) {
     <p>Votre protocole intitulé <em>\"{$titre}\"</em> déposé le <strong>{$date_depot}</strong> a été <strong>{$etat_label}</strong>";
 
     if ($action === 'valider' && $nom_dm) {
-        $corps .= " par <strong>{$nom_dm}</strong>";
+        $corps .= " .Votre DM est <strong>{$nom_dm}</strong>";
     }
 
     $corps .= ".</p>

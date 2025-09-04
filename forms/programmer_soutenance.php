@@ -7,6 +7,29 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'administrateur') {
     exit();
 }
 
+// Récupération utilisateur pour sidebar type dashboard
+$user_id = (int) $_SESSION['user_id'];
+$__stmt = $conn->prepare("SELECT username, avatar FROM users WHERE id = ?");
+$__stmt->bind_param("i", $user_id);
+$__stmt->execute();
+$__res = $__stmt->get_result();
+$__user = $__res->fetch_assoc();
+$__stmt->close();
+$__username = htmlspecialchars($__user['username'] ?? 'Utilisateur');
+$__avatar_raw = $__user['avatar'] ?? '';
+$__avatar = '';
+if (!empty($__avatar_raw)) {
+  $__trim = ltrim($__avatar_raw);
+  if (preg_match('#^https?://#i', $__trim)) {
+    $__avatar = $__trim;
+  } elseif (substr($__trim, 0, 1) === '/') {
+    $__avatar = $__trim;
+  } else {
+    $__avatar = '/Gestion_Memoire/' . ltrim($__trim, '/');
+  }
+  $__avatar = htmlspecialchars($__avatar);
+}
+
 $search = $_GET['search'] ?? '';
 $programmation = $_GET['programmation'] ?? '';
 $annee = $_GET['annee'] ?? '';
@@ -63,10 +86,51 @@ $result = $stmt->get_result();
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f9;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
       padding: 40px;
       color: #333;
     }
+    /* Réservation d'espace pour le sidebar type dashboard */
+    @media (min-width: 901px) { .main { padding-left: 280px; } }
+    @media (max-width: 900px) { .main { padding-top: 80px; } }
+
+    /* Sidebar dashboard-like */
+    .sidebar { width: 260px; background: rgba(0,0,0,0.15); backdrop-filter: blur(6px); padding: 20px; display: flex; flex-direction: column; gap: 14px; position: fixed; top: 0; left: 0; bottom: 0; z-index: 900; border-radius: 12px;}
+    .user-menu { position: relative; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.3); }
+    .avatar-initiales { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #00c6ff, #151617ff); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:#fff; }
+    .username { font-weight: 600; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dropdown { position: absolute; top: 46px; left: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); border-radius: 10px; padding: 8px 0; display: none; flex-direction: column; min-width: 180px; z-index: 920; box-shadow: 0 8px 20px rgba(0,0,0,0.25); opacity: 0; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease; }
+    .dropdown.open { display: flex; opacity: 1; transform: translateY(0); }
+    .dropdown a { padding: 10px 14px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background .25s; }
+    .dropdown a:hover { background: rgba(255,255,255,0.1); }
+    .nav { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .nav a { text-decoration: none; color: inherit; padding: 10px 12px; display: block; border-radius: 10px; background: rgba(255,255,255,0.08); }
+    .nav a:hover { background: rgba(255,255,255,0.18); }
+    #darkToggle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  #darkToggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+
+  .dark-mode { background: #0f1115 !important; color: #e7e7e7 !important; }
+  .dark-mode .sidebar { background: rgba(255,255,255,0.04); }
+  .dark-mode .nav a { background: rgba(255,255,255,0.06); }
+  .dark-mode .nav a:hover { background: rgba(255,255,255,0.12); }
+  .dark-mode .dropdown { background: rgba(30,32,38,0.98); }
 
     h2 {
       text-align: center;
@@ -77,7 +141,7 @@ $result = $stmt->get_result();
     table {
       width: 100%;
       border-collapse: collapse;
-      background: #fff;
+      background:rgb(229, 232, 232);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
@@ -89,7 +153,7 @@ $result = $stmt->get_result();
 
     th {
       background: #0078D7;
-      color: #fff;
+      color: #333;
     }
 
     form {
@@ -108,12 +172,14 @@ $result = $stmt->get_result();
     .btn {
       padding: 8px 16px;
       background-color: #28a745;
-      color: white;
+      color: #333;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
       text-align: center;
+      margin: 0 5px;
+      margin-top: 5px;
     }
 
     .btn:hover {
@@ -125,8 +191,14 @@ $result = $stmt->get_result();
       color: #212529;
     }
 
+    /* Alignement des boutons succès/danger si utilisés */
+    .btn-success { background-color: #28a745; color: #fff; margin: 0 5px; margin-top: 5px; }
+    .btn-danger { background-color: #dc3545; color: #fff; margin: 0 5px; margin-top: 5px; }
+    .btn-success:hover { background-color: #218838; }
+    .btn-danger:hover { background-color: #c82333; }
+
     .notification {
-      background-color: #d4edda;
+      background-color:rgb(229, 232, 232);
       color: #155724;
       padding: 12px;
       border-radius: 8px;
@@ -137,12 +209,12 @@ $result = $stmt->get_result();
     }
 
     .notification.success {
-      background-color: #d4edda;
+      background-color:rgb(229, 232, 232);
       border-color: #28a745;
     }
 
     .notification.error {
-      background-color: #f8d7da;
+      background-color:rgb(229, 232, 232);
       border-color: #dc3545;
       color: #721c24;
     }
@@ -186,7 +258,7 @@ $result = $stmt->get_result();
       z-index: 9999;
     }
     .loading-box {
-      background: #ffffff;
+      background:rgb(229, 232, 232);
       border: 1px solid #ddd;
       border-radius: 10px;
       padding: 20px 30px;
@@ -219,7 +291,7 @@ $result = $stmt->get_result();
       justify-content: center;
       align-items: center;
       padding: 25px;
-      background: #fff;
+      background:rgb(229, 232, 232);
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       border: 1px solid #e1e5e9;
@@ -253,7 +325,7 @@ $result = $stmt->get_result();
       outline: none;
       border-color: #0078D7;
       box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.15);
-      background-color: #fff;
+      background-color:rgb(229, 232, 232);
     }
 
     .filter-form input[type="text"]::placeholder {
@@ -277,13 +349,13 @@ $result = $stmt->get_result();
       outline: none;
       border-color: #0078D7;
       box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.15);
-      background-color: #fff;
+      background-color:rgb(229, 232, 232);
     }
 
     .filter-form button {
       padding: 14px 28px;
       background: linear-gradient(135deg, #0078D7, #106ebe);
-      color: white;
+      color: #333;
       border: none;
       border-radius: 10px;
       font-size: 15px;
@@ -365,6 +437,33 @@ $result = $stmt->get_result();
   </style>
 </head>
 <body>
+  <!-- Sidebar de type dashboard -->
+  <aside class="sidebar">
+    <div class="user-menu" tabindex="0" aria-expanded="false">
+      <?php if (empty($__avatar)): ?>
+        <?php $__initiales = ''; $__mots = explode(' ', trim($__username)); foreach ($__mots as $__m) { $__initiales .= strtoupper(mb_substr($__m, 0, 1)); } ?>
+        <div class="avatar-initiales"><?= htmlspecialchars($__initiales) ?></div>
+      <?php else: ?>
+        <img src="<?= $__avatar ?>" alt="Avatar" class="avatar">
+      <?php endif; ?>
+      <span class="username"><?= $__username ?></span>
+      <div class="dropdown" role="menu">
+        <a href="../profile.php"><i class="fa-solid fa-user"></i> Mon profil</a>
+        <a href="../settings.php"><i class="fa-solid fa-cog"></i> Paramètres</a>
+        <a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
+      </div>
+    </div>
+    <div id="darkToggle" tabindex="0" role="button" aria-label="Basculer le mode sombre"><i class="fa-solid fa-moon"></i></div>
+    <nav class="nav">
+      <a href="../dashboard.php"><i class="fa-solid fa-house"></i> Tableau de bord</a>
+      <a href="./protocoles_consultation.php"><i class="fa-solid fa-eye"></i> Consultation Protocole</a>
+      <a href="./programmer_soutenance.php"><i class="fa-solid fa-book"></i> Programmer Soutenance</a>
+      <a href="./memoires_archive.php"><i class="fa-solid fa-box-archive"></i> Memoires Archiver</a>
+      <a href="./attribuer_dm.php"><i class="fa-solid fa-user"></i> Ajouter DM</a>
+      <a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
+    </nav>
+  </aside>
+  <main class="main">
     <div class="back-button">
     <a href="../dashboard.php">← Retour au tableau de bord</a>
   </div>
@@ -577,5 +676,37 @@ $result = $stmt->get_result();
       });
     });
   </script>
+  <script>
+  (function(){
+    const userMenu = document.querySelector('.user-menu');
+    const dropdown = document.querySelector('.dropdown');
+    function closeDropdown(){ if(!dropdown) return; dropdown.classList.remove('open'); userMenu && userMenu.setAttribute('aria-expanded','false'); }
+    function toggleDropdown(){ if(!dropdown) return; const isOpen = dropdown.classList.contains('open'); if (isOpen) closeDropdown(); else { dropdown.classList.add('open'); userMenu && userMenu.setAttribute('aria-expanded','true'); } }
+    if (userMenu) {
+      userMenu.addEventListener('click', toggleDropdown);
+      userMenu.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleDropdown(); }});
+      document.addEventListener('click', (e)=>{ if (!userMenu.contains(e.target)) closeDropdown(); });
+    }
+
+    // Dark mode (identique à accueil.php)
+    const darkToggleBtn = document.getElementById('darkToggle');
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+    if (darkToggleBtn) {
+      darkToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+      });
+      darkToggleBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          darkToggleBtn.click();
+        }
+      });
+    }
+  })();
+</script>
+  </main>
 </body>
 </html>

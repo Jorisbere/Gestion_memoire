@@ -108,15 +108,18 @@ function renderBadge($status) {
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f4f6f8;
+            background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
             padding: 40px;
             color: #333;
         }
 
+        @media (min-width: 901px) { .gm-main { padding-left: 280px; } }
+        @media (max-width: 900px) { .gm-main { padding-top: 80px; } }
+
         .container {
             max-width: 800px;
             margin: auto;
-            background: #fff;
+            background:rgb(229, 232, 232);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.1);
@@ -132,7 +135,7 @@ function renderBadge($status) {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: #fff;
+            background:rgb(229, 232, 232);
         }
 
         th, td {
@@ -144,7 +147,7 @@ function renderBadge($status) {
 
         th {
             background: #0078D7;
-            color: #fff;
+            color: #333;
         }
 
         .badge {
@@ -177,7 +180,9 @@ function renderBadge($status) {
     </style>
 </head>
 <body>
-    <div class="container">
+    <?php include __DIR__ . '/../includes/sidebar.php'; ?>
+    <div class="gm-main">
+      <div class="container">
         <h2><i class="fa-solid fa-file"></i> Statut de vos documents</h2>
 
         <table>
@@ -245,6 +250,7 @@ function renderBadge($status) {
         <div class="back-button">
             <a href="../accueil.php">← Retour au tableau de bord</a>
         </div>
+      </div>
     </div>
 </body>
 </html>

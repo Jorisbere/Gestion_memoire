@@ -39,13 +39,15 @@ $dm_name = $stmt->fetchColumn();
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Étudiants suivis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des étudiants</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
-      padding: 30px;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
+      padding: 40px;
+      color: #333;
     }
     h2 {
       text-align: center;
@@ -54,20 +56,20 @@ $dm_name = $stmt->fetchColumn();
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
+      background:rgb(229, 232, 232);
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     th, td {
       padding: 12px 16px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #eee;
       text-align: left;
     }
     th {
       background-color: #0078D7;
-      color: white;
+      color: #fff;
     }
     tr:hover {
-      background-color: #f1f1f1;
+      background-color: #f1f9ff;
     }
     .status {
       font-weight: bold;
@@ -92,9 +94,13 @@ $dm_name = $stmt->fetchColumn();
       color: #0078D7;
       font-weight: bold;
     }
+    @media (min-width: 901px) { .gm-main { padding-left: 280px; } }
+    @media (max-width: 900px) { .gm-main { padding-top: 80px; } }
   </style>
 </head>
 <body>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
+  <div class="gm-main">
     <div class="back-button">
     <a href="../accueil.php">← Retour au tableau de bord</a>
   </div>
@@ -127,6 +133,6 @@ $dm_name = $stmt->fetchColumn();
     <?php endif; ?>
   </tbody>
 </table>
-
+  </div>
 </body>
 </html>

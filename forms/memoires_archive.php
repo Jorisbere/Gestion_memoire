@@ -46,13 +46,13 @@ $result = $stmt->get_result();
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Mémoires Archivés</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mémoires archivés</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f4f8;
+      background: linear-gradient(90deg, #49c4e6ff 0%, #e5edf7ff 100%);
       padding: 40px;
       color: #333;
     }
@@ -104,7 +104,7 @@ $result = $stmt->get_result();
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      background: #fff;
+      background:rgb(229, 232, 232);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
@@ -116,11 +116,12 @@ $result = $stmt->get_result();
 
     th {
       background: #0078D7;
-      color: #fff;
+      color: #333;
     }
 
     tr:hover {
       background: #f1f9ff;
+      color: #333;
     }
 
     .download-link {
@@ -138,47 +139,52 @@ $result = $stmt->get_result();
         font-size: 14px;
       }
     }
+    @media (min-width: 901px) { .gm-main { padding-left: 280px; } }
+    @media (max-width: 900px) { .gm-main { padding-top: 80px; } }
   </style>
 </head>
 <body>
-  <div class="back-button">
-    <!-- <a href="../dashboard.php">← Retour au tableau de bord</a> -->
-    <a href="javascript:history.back()" class="btn-back">← Retour au tableau de bord</a>
+  <?php include __DIR__ . '/../includes/sidebar.php'; ?>
+  <div class="gm-main">
+    <div class="back-button">
+      <!-- <a href="../dashboard.php">← Retour au tableau de bord</a> -->
+      <a href="javascript:history.back()" class="btn-back">← Retour au tableau de bord</a>
+    </div>
+
+    <h2><i class="fa-solid fa-folder-open"></i> Mémoires Archivés</h2>
+
+    <form method="GET" class="search-bar">
+      <input type="text" name="search" placeholder="Rechercher par titre..." value="<?= htmlspecialchars($search) ?>">
+      <input type="text" name="annee" placeholder="Année académique (ex: 2024-2025)" value="<?= htmlspecialchars($annee) ?>">
+      <button type="submit">Filtrer</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Auteur</th>
+          <th>Année</th>
+          <th>Date de dépôt</th>
+          <th>Fichier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if ($result->num_rows > 0): ?>
+          <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+              <td><?= htmlspecialchars($row['titre']) ?></td>
+              <td><?= htmlspecialchars($row['auteur']) ?></td>
+              <td><?= htmlspecialchars($row['annee']) ?></td>
+              <td><?= date('d/m/Y', strtotime($row['date_depot'])) ?></td>
+              <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank"><i class="fa-solid fa-download"></i> Télécharger</a></td>
+            </tr>
+          <?php endwhile; ?>
+        <?php else: ?>
+          <tr><td colspan="5">Aucun mémoire trouvé.</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
   </div>
-
-  <h2><i class="fa-solid fa-folder-open"></i> Mémoires Archivés</h2>
-
-  <form method="GET" class="search-bar">
-    <input type="text" name="search" placeholder="Rechercher par titre..." value="<?= htmlspecialchars($search) ?>">
-    <input type="text" name="annee" placeholder="Année académique (ex: 2024-2025)" value="<?= htmlspecialchars($annee) ?>">
-    <button type="submit">Filtrer</button>
-  </form>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Titre</th>
-        <th>Auteur</th>
-        <th>Année</th>
-        <th>Date de dépôt</th>
-        <th>Fichier</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <tr>
-            <td><?= htmlspecialchars($row['titre']) ?></td>
-            <td><?= htmlspecialchars($row['auteur']) ?></td>
-            <td><?= htmlspecialchars($row['annee']) ?></td>
-            <td><?= date('d/m/Y', strtotime($row['date_depot'])) ?></td>
-            <td><a class="download-link" href="<?= htmlspecialchars($row['fichier_path']) ?>" target="_blank"><i class="fa-solid fa-download"></i> Télécharger</a></td>
-          </tr>
-        <?php endwhile; ?>
-      <?php else: ?>
-        <tr><td colspan="5">Aucun mémoire trouvé.</td></tr>
-      <?php endif; ?>
-    </tbody>
-  </table>
 </body>
 </html>
