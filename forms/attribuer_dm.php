@@ -90,21 +90,42 @@ while ($user = $result->fetch_assoc()) {
       color: #333;
     }
 
+    /* Main wrapper to handle sidebar space and centering */
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Centrage horizontal en tenant compte du sidebar */
+    @media (min-width: 901px) {
+      .main {
+        padding-left: 280px;
+      }
+    }
+    @media (max-width: 900px) {
+      .main {
+        padding-top: 80px;
+        padding-left: 0;
+      }
+    }
+
     .container {
       position: relative;
       max-width: 600px;
-      margin: 50px auto 50px;
-      background:rgb(229, 232, 232);
+      width: 100%;
+      margin: 0 auto;
+      background: rgb(229, 232, 232);
       padding: 30px;
       border-radius: 30px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      transition: background 0.3s, color 0.3s;
     }
-
-    /* Réservation d'espace pour le sidebar type dashboard */
-    @media (min-width: 901px) { .main { padding-left: 280px; } }
-    @media (max-width: 900px) { .main { padding-top: 80px; } }
 
     /* Sidebar dashboard-like */
     .sidebar { width: 260px; background: rgba(0,0,0,0.15); backdrop-filter: blur(6px); padding: 20px; display: flex; flex-direction: column; gap: 14px; position: fixed; top: 0; left: 0; bottom: 0; z-index: 900; border-radius: 12px;}
@@ -120,41 +141,75 @@ while ($user = $result->fetch_assoc()) {
     .nav a { text-decoration: none; color: inherit; padding: 10px 12px; display: block; border-radius: 10px; background: rgba(255,255,255,0.08); }
     .nav a:hover { background: rgba(255,255,255,0.18); }
     #darkToggle {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    background: rgba(255,255,255,0.18);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  #darkToggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #darkToggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
 
-  .dark-mode { background: #0f1115 !important; color: #e7e7e7 !important; }
-  .dark-mode .sidebar { background: rgba(255,255,255,0.04); }
-  .dark-mode .nav a { background: rgba(255,255,255,0.06); }
-  .dark-mode .nav a:hover { background: rgba(255,255,255,0.12); }
-  .dark-mode .dropdown { background: rgba(30,32,38,0.98); }
-
+    /* Dark mode styles */
+    .dark-mode {
+      background: #0f1115 !important;
+      color: #e7e7e7 !important;
+    }
+    .dark-mode .sidebar { background: rgba(255,255,255,0.04); }
+    .dark-mode .nav a { background: rgba(255,255,255,0.06); color: #e7e7e7; }
+    .dark-mode .nav a:hover { background: rgba(255,255,255,0.12); }
+    .dark-mode .dropdown { background: rgba(30,32,38,0.98); }
+    .dark-mode .container {
+      background: #181b22 !important;
+      color: #e7e7e7 !important;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    .dark-mode h2 {
+      color: #4fc3f7 !important;
+    }
+    .dark-mode select,
+    .dark-mode input,
+    .dark-mode textarea {
+      background: #23262b !important;
+      color: #e7e7e7 !important;
+      border: 1px solid #444 !important;
+    }
+    .dark-mode button {
+      background: #4fc3f7 !important;
+      color: #181b22 !important;
+    }
+    .dark-mode button:hover {
+      background: #1976d2 !important;
+      color: #fff !important;
+    }
+    .dark-mode .success,
+    .dark-mode .error,
+    .dark-mode .notification {
+      background: #23262b !important;
+      color: #e7e7e7 !important;
+    }
 
     h2 {
       text-align: center;
       margin-bottom: 30px;
       color: #0078D7;
+      transition: color 0.3s;
     }
 
     form {
       display: flex;
       flex-direction: column;
       gap: 16px;
+      width: 100%;
     }
 
     select {
@@ -162,6 +217,7 @@ while ($user = $result->fetch_assoc()) {
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 16px;
+      transition: background 0.3s, color 0.3s, border 0.3s;
     }
 
     button {
@@ -172,10 +228,12 @@ while ($user = $result->fetch_assoc()) {
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s, color 0.3s;
     }
 
     button:hover {
       background: #0056a3;
+      color: #fff;
     }
 
     .notification {
@@ -184,6 +242,7 @@ while ($user = $result->fetch_assoc()) {
       border-radius: 8px;
       font-weight: bold;
       text-align: center;
+      transition: background 0.3s, color 0.3s;
     }
 
     .success {
@@ -236,48 +295,45 @@ while ($user = $result->fetch_assoc()) {
       <a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion</a>
     </nav>
   </aside>
-  <div class="container">
-    <h2><i class="fa-solid fa-user"></i> Attribuer le rôle DM</h2>
+  <div class="main">
+    <div class="container">
+      <h2><i class="fa-solid fa-user"></i> Attribuer le rôle DM</h2>
 
-    <form method="POST">
-  <label for="user_id">Sélectionner un utilisateur :</label>
-  <select name="user_id" id="user_id" required>
-  <option value="">-- Choisir --</option>
+      <form method="POST">
+        <label for="user_id">Sélectionner un utilisateur :</label>
+        <select name="user_id" id="user_id" required>
+          <option value="">-- Choisir --</option>
+          <optgroup label="Étudiants">
+            <?php foreach ($etudiants as $user): ?>
+              <option value="<?= $user['id'] ?>">
+                <?= htmlspecialchars($user['username']) ?> (étudiant)
+              </option>
+            <?php endforeach; ?>
+          </optgroup>
+          <optgroup label="DM actuels">
+            <?php foreach ($dms as $user): ?>
+              <option value="<?= $user['id'] ?>">
+                <?= htmlspecialchars($user['username']) ?> (DM)
+              </option>
+            <?php endforeach; ?>
+          </optgroup>
+        </select>
 
-  <optgroup label="Étudiants">
-    <?php foreach ($etudiants as $user): ?>
-      <option value="<?= $user['id'] ?>">
-        <?= htmlspecialchars($user['username']) ?> (étudiant)
-      </option>
-    <?php endforeach; ?>
-  </optgroup>
+        <button type="submit" name="action" value="attribuer">Attribuer le rôle DM</button>
+        <button type="submit" name="action" value="revoquer" style="background:#d9534f;">Révoquer le rôle DM</button>
 
-  <optgroup label="DM actuels">
-    <?php foreach ($dms as $user): ?>
-      <option value="<?= $user['id'] ?>">
-        <?= htmlspecialchars($user['username']) ?> (DM)
-      </option>
-    <?php endforeach; ?>
-  </optgroup>
-</select>
+        <!-- <div class="back-button">
+          <a href="../dashboard.php">← Retour au tableau de bord</a>
+        </div> -->
+      </form>
 
-
-  <button type="submit" name="action" value="attribuer">Attribuer le rôle DM</button>
-  <button type="submit" name="action" value="revoquer" style="background:#d9534f;">Révoquer le rôle DM</button>
-
-  <!-- <div class="back-button">
-    <a href="../dashboard.php">← Retour au tableau de bord</a>
-  </div> -->
-</form>
-
-
-    <?php if ($notification): ?>
-      <div class="notification <?= str_starts_with($notification, '✅') ? 'success' : 'error' ?>">
-        <?= $notification ?>
-      </div>
-    <?php endif; ?>
+      <?php if ($notification): ?>
+        <div class="notification <?= str_starts_with($notification, '✅') ? 'success' : 'error' ?>">
+          <?= $notification ?>
+        </div>
+      <?php endif; ?>
+    </div>
   </div>
-
   <script>
   (function(){
     const userMenu = document.querySelector('.user-menu');
@@ -308,7 +364,6 @@ while ($user = $result->fetch_assoc()) {
       });
     }
   })();
-</script>
+  </script>
 </body>
 </html>
-

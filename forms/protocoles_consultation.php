@@ -166,6 +166,101 @@ while ($dm = $dm_result->fetch_assoc()) {
   .dark-mode .nav a:hover { background: rgba(255,255,255,0.12); }
   .dark-mode .dropdown { background: rgba(30,32,38,0.98); }
 
+  /* === DARK MODE POUR LE MAIN ET SES ELEMENTS === */
+  .dark-mode .main {
+    background: #181b22 !important;
+    color: #e7e7e7 !important;
+  }
+  .dark-mode h2 {
+    color: #4fc3f7 !important;
+  }
+  .dark-mode .search-form input,
+  .dark-mode .search-form button,
+  .dark-mode .search-form select {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+    border: 1px solid #444 !important;
+  }
+  .dark-mode .search-form button {
+    background: #1565c0 !important;
+    color: #fff !important;
+  }
+  .dark-mode table {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .dark-mode th, .dark-mode td {
+    border-bottom: 1px solid #333 !important;
+    color: #e7e7e7 !important;
+  }
+  .dark-mode th {
+    background: #1565c0 !important;
+    color: #fff !important;
+  }
+  .dark-mode tr:hover {
+    background: #1a222d !important;
+  }
+  .dark-mode .download-link {
+    color: #4fc3f7 !important;
+  }
+  .dark-mode .back-button a {
+    color: #4fc3f7 !important;
+  }
+  .dark-mode select {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+    border: 1px solid #444 !important;
+  }
+  .dark-mode .btn-success {
+    background-color: #388e3c !important;
+    color: #fff !important;
+  }
+  .dark-mode .btn-danger {
+    background-color: #b71c1c !important;
+    color: #fff !important;
+  }
+  .dark-mode .btn-success:hover {
+    background-color: #2e7031 !important;
+  }
+  .dark-mode .btn-danger:hover {
+    background-color: #7f1313 !important;
+  }
+  .dark-mode .notification {
+    background-color: #1b2a1b !important;
+    border-color: #388e3c !important;
+    color: #e7e7e7 !important;
+  }
+  .dark-mode .notification.success {
+    background-color: #1e2e1e !important;
+    border-color: #388e3c !important;
+  }
+  .dark-mode .notification.error {
+    background-color: #2d1b1b !important;
+    border-color: #b71c1c !important;
+    color: #ffbdbd !important;
+  }
+  .dark-mode .loading-overlay {
+    background: rgba(15, 17, 21, 0.92) !important;
+  }
+  .dark-mode .loading-box {
+    background: #232733 !important;
+    color: #e7e7e7 !important;
+    border: 1px solid #333 !important;
+  }
+  .dark-mode .spinner {
+    border: 3px solid #232733 !important;
+    border-top-color: #4fc3f7 !important;
+  }
+  /* Badges */
+  .badge.bg-success { background: #28a745; color: #fff; border-radius: 4px; padding: 3px 8px; }
+  .badge.bg-danger { background: #dc3545; color: #fff; border-radius: 4px; padding: 3px 8px; }
+  .badge.bg-warning { background: #ffc107; color: #333; border-radius: 4px; padding: 3px 8px; }
+  .dark-mode .badge.bg-success { background: #388e3c !important; color: #fff !important; }
+  .dark-mode .badge.bg-danger { background: #b71c1c !important; color: #fff !important; }
+  .dark-mode .badge.bg-warning { background: #ffb300 !important; color: #232733 !important; }
+  /* Fin badges */
+
     /* Styles des boutons d'action */
     .btn { padding: 6px 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px; }
     .btn-success { background-color: #28a745; color: #fff; margin: 0 5px;margin-top: 5px;}

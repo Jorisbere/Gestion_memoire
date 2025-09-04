@@ -188,9 +188,9 @@ function renderBadge($status) {
         <table>
             <thead>
                 <tr>
-                    <th>Document</th>
-                    <th>Statut</th>
-                    <th>Informations</th>
+                    <th><i class="fa-solid fa-file-alt"></i> Document</th>
+                    <th><i class="fa-solid fa-check-circle"></i> Statut</th>
+                    <th><i class="fa-solid fa-info-circle"></i> Informations</th>
                 </tr>
             </thead>
             <tbody>
@@ -235,9 +235,9 @@ function renderBadge($status) {
                     <td><?= renderBadge($statut_memoire) ?></td>
                     <td>
                         <?php if ($statut_memoire === 'valide'): ?>
-                            Titre : <strong><?= !empty($memoire_info['titre']) ? htmlspecialchars($memoire_info['titre']) : '—' ?></strong><br>
+                            <i class="fa-solid fa-file-alt"></i> Titre : <strong><?= !empty($memoire_info['titre']) ? htmlspecialchars($memoire_info['titre']) : '—' ?></strong><br>
                             <?php if (!empty($memoire_info['date_depot'])): ?>
-                                Date : <strong><?= date("d/m/Y H:i", strtotime($memoire_info['date_depot'])) ?></strong>
+                            <i class="fa-solid fa-calendar-alt"></i> Date : <strong><?= date("d/m/Y H:i", strtotime($memoire_info['date_depot'])) ?></strong>
                             <?php endif; ?>
                         <?php else: ?>
                             —

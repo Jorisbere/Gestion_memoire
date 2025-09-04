@@ -162,11 +162,11 @@ $result = $stmt->get_result();
     <table>
       <thead>
         <tr>
-          <th>Titre</th>
-          <th>Auteur</th>
-          <th>Année</th>
-          <th>Date de dépôt</th>
-          <th>Fichier</th>
+          <th><i class="fa-solid fa-file-alt"></i> Titre</th>
+          <th><i class="fa-solid fa-user"></i> Auteur</th>
+          <th><i class="fa-solid fa-calendar-alt"></i> Année</th>
+          <th><i class="fa-solid fa-calendar-day"></i> Date de dépôt</th>
+          <th><i class="fa-solid fa-file-download"></i> Fichier</th>
         </tr>
       </thead>
       <tbody>

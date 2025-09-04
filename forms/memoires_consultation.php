@@ -159,12 +159,12 @@ $result = $stmt->get_result();
     <table>
       <thead>
         <tr>
-          <th>Titre</th>
-          <th>Auteur</th>
-          <th>Date de dépôt</th>
-          <th>Fichier</th>
-          <th>État</th>
-          <th>Action</th>
+          <th><i class="fa-solid fa-file-alt"></i> Titre</th>
+          <th><i class="fa-solid fa-user"></i> Auteur</th>
+          <th><i class="fa-solid fa-calendar-alt"></i> Date de dépôt</th>
+          <th><i class="fa-solid fa-file-download"></i> Fichier</th>
+          <th><i class="fa-solid fa-check-circle"></i> État</th>
+          <th><i class="fa-solid fa-cogs"></i> Action</th>
         </tr>
       </thead>
       <tbody>

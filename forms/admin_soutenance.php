@@ -83,7 +83,7 @@ $result = $stmt->get_result();
 
     th, td { padding: 12px 16px; border-bottom: 1px solid #eee; text-align: left; }
 
-    th { background: #0078D7; color: #fff; }
+    th { background: #0078D7; color: #070707ff; }
 
     .btn { padding: 6px 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-right: 5px; }
 
@@ -148,13 +148,13 @@ $result = $stmt->get_result();
     <table>
       <thead>
         <tr>
-          <th>Titre</th>
-          <th>Auteur</th>
-          <th>Encadrant</th>
-          <th>Fichier</th>
-          <th>Date de demande</th>
-          <th>État</th>
-          <th>Action</th>
+          <th><i class="fa-solid fa-file-alt"></i> Titre</th>
+          <th><i class="fa-solid fa-user"></i> Auteur</th>
+          <th><i class="fa-solid fa-user-tie"></i> Encadrant</th>
+          <th><i class="fa-solid fa-file"></i> Fichier</th>
+          <th><i class="fa-solid fa-calendar-alt"></i> Date de demande</th>
+          <th><i class="fa-solid fa-check-circle"></i> État</th>
+          <th><i class="fa-solid fa-cogs"></i> Action</th>
         </tr>
       </thead>
       <tbody>

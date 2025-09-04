@@ -158,7 +158,7 @@ $dm_name = $stmt->fetchColumn();
     }
     th {
       background-color: #0078D7;
-      color: #fff;
+      color: #121212ff;
     }
     tr:hover {
       background-color: #f1f9ff;
@@ -218,11 +218,11 @@ $dm_name = $stmt->fetchColumn();
 <table>
   <thead>
     <tr>
-      <th>Étudiant</th>
-      <th>Titre du mémoire</th>
-      <th>État</th>
-      <th>Date soutenance</th>
-      <th>Salle</th>
+      <th><i class="fa-solid fa-user"></i> Étudiant</th>
+      <th><i class="fa-solid fa-file-alt"></i> Titre du mémoire</th>
+      <th><i class="fa-solid fa-check-circle"></i> État</th>
+      <th><i class="fa-solid fa-calendar-alt"></i> Date soutenance</th>
+      <th><i class="fa-solid fa-door-open"></i> Salle</th>
     </tr>
   </thead>
   <tbody>
