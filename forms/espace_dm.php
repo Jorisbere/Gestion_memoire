@@ -92,6 +92,7 @@ function getRejectedCount($conn, $table, $encadrant) {
   <title>Espace DM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
   body {
   font-family: 'Segoe UI', sans-serif;
@@ -236,13 +237,29 @@ function getRejectedCount($conn, $table, $encadrant) {
     }
 
     .back-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background:rgb(148, 211, 254);
       text-align: center;
       margin-top: 30px;
+      border-radius: 8px;
     }
 
     .back-button a {
       text-decoration: none;
-      color: #0078D7;
+      color:rgb(0, 0, 0);
+      font-weight: bold;
+    }
+
+    .back-button1 {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-button1 a {
+      text-decoration: none;
+      color:rgb(43, 106, 201);
       font-weight: bold;
     }
 
@@ -350,43 +367,46 @@ function getRejectedCount($conn, $table, $encadrant) {
   </style>
 </head>
 <body>
+<div class="back-button">
+  <a href="../accueil.php"><i class="fa-solid fa-arrow-left"></i> Retour</a>
+</div>
   <!-- <?php include __DIR__ . '/../includes/sidebar.php'; ?> -->
   <div class="gm-main">
-    <h2>📁 Espace DM — Bienvenue <?= htmlspecialchars($dm_nom) ?> 👋</h2>
+    <h2><i class="fa-solid fa-folder-open"></i> Espace DM — Bienvenue <?= htmlspecialchars($dm_nom) ?> <i class="fa-solid fa-smile"></i></h2>
 
     <div class="stat-container">
     <div class="stat-box encadres">
-      <div class="label"><i>👥</i> Étudiants encadrés</div>
+      <div class="label"><i><i class="fa-solid fa-users"></i></i> Étudiants encadrés</div>
       <div class="value"><?= $nb_etudiants ?></div>
     </div>
 
     <div class="stat-box soutenance attente">
-      <div class="label"><i>🕐</i> Soutenances en attente</div>
+      <div class="label"><i><i class="fa-solid fa-clock"></i></i> Soutenances en attente</div>
       <div class="value"><?= $nb_soutenances ?></div>
     </div>
 
     <div class="stat-box soutenance validée">
-      <div class="label"><i>✅</i> Soutenances validées</div>
+      <div class="label"><i><i class="fa-solid fa-check"></i></i> Soutenances validées</div>
       <div class="value"><?= $nb_soutenances_validées ?></div>
     </div>
 
     <div class="stat-box soutenance rejetée">
-      <div class="label"><i>❌</i> Soutenances rejetées</div>
+      <div class="label"><i><i class="fa-solid fa-times"></i></i> Soutenances rejetées</div>
       <div class="value"><?= $nb_soutenances_rejetees ?></div>
     </div>
 
     <div class="stat-box memoire attente">
-      <div class="label"><i>📄</i> Mémoires en attente</div>
+      <div class="label"><i><i class="fa-solid fa-file"></i></i> Mémoires en attente</div>
       <div class="value"><?= $nb_memoires ?></div>
     </div>
 
     <div class="stat-box memoire validée">
-      <div class="label"><i>✅</i> Mémoires validés</div>
+      <div class="label"><i><i class="fa-solid fa-check"></i></i> Mémoires validés</div>
       <div class="value"><?= $nb_memoires_validés ?></div>
     </div>
 
     <div class="stat-box memoire rejetée">
-      <div class="label"><i>❌</i> Mémoires rejetés</div>
+      <div class="label"><i><i class="fa-solid fa-times"></i></i> Mémoires rejetés</div>
       <div class="value"><?= $nb_memoires_rejetés ?></div>
     </div>
   </div>
@@ -394,7 +414,7 @@ function getRejectedCount($conn, $table, $encadrant) {
 
 
     <div class="recent-actions">
-    <h3>🕒 Dernières actions</h3>
+    <h3><i class="fa-solid fa-clock"></i> Dernières actions</h3>
     <div style="max-height:300px; overflow-y:auto; padding-right:5px;">
       <ul style="list-style:none; padding-left:0; margin:0;">
         <?php
@@ -434,20 +454,20 @@ function getRejectedCount($conn, $table, $encadrant) {
         while ($row = $result->fetch_assoc()) {
           $type = strtolower($row['type_demande'] ?? '');
           $etat = strtolower($row['etat_validation'] ?? '');
-          $icon = $type === 'mémoire' ? '📘' : '📄';
+          $icon = $type === 'mémoire' ? '<i class="fa-solid fa-book"></i>' : '<i class="fa-solid fa-file-alt"></i>';
 
           switch ($etat) {
             case 'valide':
               $color = 'green';
-              $etat_label = '✅ validée';
+              $etat_label = '<i class="fa-solid fa-check"></i> validée';
               break;
             case 'rejete':
               $color = 'red';
-              $etat_label = '❌ rejetée';
+              $etat_label = '<i class="fa-solid fa-times"></i> rejetée';
               break;
             default:
               $color = 'orange';
-              $etat_label = '🕐 en attente';
+              $etat_label = '<i class="fa-solid fa-clock"></i> en attente';
               break;
           }
 
@@ -467,29 +487,29 @@ function getRejectedCount($conn, $table, $encadrant) {
 
 
     <div class="chart-section">
-    <h2>📊 Vue d’ensemble des validations</h2>
+    <h2><i class="fa-solid fa-chart-pie"></i> Vue d’ensemble des validations</h2>
 
     <div class="chart-grid">
       <div class="chart-card">
-        <h4>Global</h4>
+        <h4><i class="fa-solid fa-globe"></i> Global</h4>
         <canvas id="validationChart"></canvas>
       </div>
 
       <div class="chart-card">
-        <h4>Mémoires</h4>
+        <h4><i class="fa-solid fa-book"></i> Mémoires</h4>
         <canvas id="memoireChart"></canvas>
       </div>
 
       <div class="chart-card">
-        <h4>Soutenances</h4>
+        <h4><i class="fa-solid fa-file-alt"></i> Soutenances</h4>
         <canvas id="soutenanceChart"></canvas>
       </div>
     </div>
   </div>
 
 
-<div class="back-button">
-  <a href="../accueil.php">← Retour au tableau de bord</a>
+<div class="back-button1">
+  <a href="../accueil.php"><i class="fa-solid fa-arrow-left"></i> Retour</a>
 </div>
 
 

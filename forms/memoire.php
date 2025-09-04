@@ -126,10 +126,10 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir déposer 
 
       <h2><i class="fa-solid fa-file"></i> Déposer un Mémoire</h2>
 
-      <label for="titre">Titre du mémoire</label>
+      <label for="titre"><i class="fa-solid fa-heading"></i> Titre du mémoire</label>
       <input type="text" name="titre" id="titre" required>
 
-      <label for="encadrant">Encadrant</label>
+      <label for="encadrant"><i class="fa-solid fa-user-tie"></i> Encadrant</label>
       <select name="encadrant" id="encadrant" required>
         <option value="">-- Sélectionner --</option>
         <?php foreach ($encadrants as $nom): ?>
@@ -137,15 +137,15 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir déposer 
         <?php endforeach; ?>
       </select>
 
-      <label for="annee">Année académique</label>
+      <label for="annee"><i class="fa-solid fa-calendar-alt"></i> Année académique</label>
       <input type="text" name="annee" id="annee" placeholder="ex: 2024-2025" required>
 
-      <label for="fichier">Fichier PDF</label>
-      <small style="color:#666;">Taille maximale autorisée : 20 Mo</small>
+      <label for="fichier"><i class="fa-solid fa-file-pdf"></i> Fichier PDF</label>
+      <small style="color:#666;"><i class="fa-solid fa-info-circle"></i> Taille maximale autorisée : 20 Mo</small>
       <input type="file" name="fichier" id="fichier" accept=".pdf" required>
 
       <div class="button-container">
-        <button type="submit">Déposer</button>
+        <button type="submit"><i class="fa-solid fa-upload"></i> Déposer</button>
       </div>
       <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>

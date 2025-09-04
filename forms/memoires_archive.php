@@ -156,7 +156,7 @@ $result = $stmt->get_result();
     <form method="GET" class="search-bar">
       <input type="text" name="search" placeholder="Rechercher par titre..." value="<?= htmlspecialchars($search) ?>">
       <input type="text" name="annee" placeholder="Année académique (ex: 2024-2025)" value="<?= htmlspecialchars($annee) ?>">
-      <button type="submit">Filtrer</button>
+      <button type="submit"><i class="fa-solid fa-filter"></i> Filtrer</button>
     </form>
 
     <table>

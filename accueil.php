@@ -303,7 +303,7 @@ $soutenance_status = getValidationStatus('demandes_soutenance', $user_id, $conn)
   <img src="assets/images/télécharger (1).png" alt="Logo Fiscal" class="logo1">
   <main>
     <img src="assets/images/télécharger (2).png" alt="Logo Fiscal" class="logo">
-    <h1>Bienvenue <?= $username ?> 👋</h1>
+    <h1>Bienvenue <?= $username ?> <i class="fa-solid fa-smile"></i></h1>
     <?php
 // Exemple : rôle récupéré depuis la base ou la session
 $role = $user['role'];

@@ -140,15 +140,14 @@ $result = $stmt->get_result();
       </div>
     </div>
 
-    <h2>📊 Consultation des mémoires finaux</h2>
-
+    <h2><i class="fa-solid fa-folder-open"></i> Consultation des mémoires finaux</h2>
     <div id="notification" class="notification">
       <span id="notification-message"></span>
       <button onclick="document.getElementById('notification').style.display='none'">✖</button>
     </div>
 
     <form method="GET" class="filter-form">
-      <label for="filtre">Filtrer par état :</label>
+      <label for="filtre"><i class="fa-solid fa-filter"></i> Filtrer par état :</label>
       <select name="filtre" id="filtre" onchange="this.form.submit()">
         <option value="">Tous</option>
         <option value="en_attente" <?= $filtre === 'en_attente' ? 'selected' : '' ?>>En attente</option>

@@ -110,10 +110,10 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir envoyer c
 
       <h2><i class="fa-solid fa-file"></i> Demande de Soutenance</h2>
 
-      <label for="titre">Titre du mémoire</label>
+      <label for="titre"><i class="fa-solid fa-heading"></i> Titre du mémoire</label>
       <input type="text" name="titre" id="titre" required>
 
-      <label for="encadrant">Encadrant (DM)</label>
+      <label for="encadrant"><i class="fa-solid fa-user-tie"></i> Encadrant (DM)</label>
       <select name="encadrant" id="encadrant" required>
         <option value="">-- Sélectionner un DM --</option>
         <?php foreach ($dms as $dm): ?>
@@ -121,19 +121,19 @@ function confirmerDepot() { return confirm("Êtes-vous sûr de vouloir envoyer c
         <?php endforeach; ?>
       </select>
 
-      <label for="session">Session souhaitée</label>
+      <label for="session"><i class="fa-solid fa-calendar-alt"></i> Session souhaitée</label>
       <select name="session" id="session" required>
         <option value="">-- Choisir une session --</option>
-        <option value="normale">Session normale</option>
+        <option value="normale"> Session normale</option>
         <option value="anticipe">Session anticipée</option>
       </select>
 
-      <label for="fichier">Fichier de soutenance (PDF)</label>
-      <small style="color:#666;">Taille maximale autorisée : 20 Mo</small>
+      <label for="fichier"><i class="fa-solid fa-file-pdf"></i> Fichier de soutenance (PDF)</label>
+      <small style="color:#666;"><i class="fa-solid fa-info-circle"></i> Taille maximale autorisée : 20 Mo</small>
       <input type="file" name="fichier" id="fichier" accept=".pdf" required>
 
       <div class="button-container">
-        <button type="submit">Envoyer la demande</button>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer la demande</button>
       </div>
       <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>

@@ -11,8 +11,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'DM') {
 // Récupération de l'ID du DM connecté
 $dm_id = $_SESSION['user_id'];
 
-// Requête : récupérer les étudiants liés au DM via la table protocoles
-$stmt = $pdo->prepare("
+// Gestion des filtres et recherche
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$filter_etat = isset($_GET['etat']) ? $_GET['etat'] : '';
+
+// Construction dynamique de la requête SQL avec filtres
+$sql = "
     SELECT 
         u.username AS etudiant,
         ds.titre,
@@ -24,10 +28,26 @@ $stmt = $pdo->prepare("
     JOIN users u ON p.user_id = u.id
     JOIN demandes_soutenance ds ON ds.user_id = u.id
     WHERE p.dm_id = ?
-    ORDER BY ds.date_soutenance DESC
-");
-$stmt->execute([$dm_id]);
+";
+$params = [$dm_id];
+
+if ($search !== '') {
+    $sql .= " AND (u.username LIKE ? OR ds.titre LIKE ?)";
+    $params[] = "%$search%";
+    $params[] = "%$search%";
+}
+
+if ($filter_etat !== '' && in_array($filter_etat, ['valide', 'rejete', 'en_attente'])) {
+    $sql .= " AND ds.etat_validation = ?";
+    $params[] = $filter_etat;
+}
+
+$sql .= " ORDER BY ds.date_soutenance DESC";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 $etudiants = $stmt->fetchAll();
+
 // Récupérer le nom du DM pour l'affichage
 $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
 $stmt->execute([$dm_id]);
@@ -52,6 +72,78 @@ $dm_name = $stmt->fetchColumn();
     h2 {
       text-align: center;
       margin-bottom: 30px;
+    }
+    .search-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      gap: 10px;
+    }
+    .search-filter-bar form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .search-filter-bar input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #b3c6d7;
+      border-radius: 4px;
+      font-size: 1em;
+      min-width: 180px;
+    }
+    .search-filter-bar select {
+      padding: 8px 12px;
+      border: 1px solid #b3c6d7;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    .search-filter-bar button {
+      padding: 8px 16px;
+      background: #0078D7;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-filter-bar button:hover {
+      background: #005fa3;
+    }
+
+    .search-bar {
+      max-width: 700px;
+      margin: auto;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .search-bar select {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+      padding: 10px 20px;
+      background: #0078D7;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
     table {
       width: 100%;
@@ -106,6 +198,22 @@ $dm_name = $stmt->fetchColumn();
   </div> -->
 
 <h2><i class="fas fa-users"></i> Étudiants encadrés par <?= htmlspecialchars($dm_name) ?></h2>
+
+<div class="search-bar">
+  <form method="get" action="">
+    <input type="text" name="search" placeholder="Rechercher un étudiant ou un titre..." value="<?= htmlspecialchars($search) ?>" />
+    <select name="etat">
+      <option value="">Tous les états</option>
+      <option value="en_attente" <?= $filter_etat === 'en_attente' ? 'selected' : '' ?>>En attente</option>
+      <option value="valide" <?= $filter_etat === 'valide' ? 'selected' : '' ?>>Validé</option>
+      <option value="rejete" <?= $filter_etat === 'rejete' ? 'selected' : '' ?>>Rejeté</option>
+    </select>
+    <button type="submit"><i class="fa fa-search"></i> Rechercher</button>
+    <?php if ($search !== '' || $filter_etat !== ''): ?>
+      <a href="liste_etudiants.php" style="margin-left:10px; color:#0078D7; text-decoration:underline;">Réinitialiser</a>
+    <?php endif; ?>
+  </form>
+</div>
 
 <table>
   <thead>

@@ -128,7 +128,7 @@ $result = $stmt->get_result();
       </div>
     </div>
 
-    <h2>🧑‍💼 Gestion des demandes de soutenance</h2>
+    <h2><i class="fa-solid fa-folder-open"></i> Gestion des demandes de soutenance</h2>
 
     <div id="notification" class="notification">
       <span id="notification-message"></span>
@@ -136,12 +136,12 @@ $result = $stmt->get_result();
     </div>
 
     <form method="GET" class="filter-form">
-      <label for="filtre">Filtrer par état :</label>
+      <label for="filtre"><i class="fa-solid fa-filter"></i> Filtrer par état :</label>
       <select name="filtre" id="filtre" onchange="this.form.submit()">
-        <option value="">Tous</option>
-        <option value="en_attente" <?= $filtre === 'en_attente' ? 'selected' : '' ?>>En attente</option>
-        <option value="valide" <?= $filtre === 'valide' ? 'selected' : '' ?>>Validés</option>
-        <option value="rejete" <?= $filtre === 'rejete' ? 'selected' : '' ?>>Rejetés</option>
+        <option value=""><i class="fa-solid fa-folder-open"></i> Tous</option>
+        <option value="en_attente" <?= $filtre === 'en_attente' ? 'selected' : '' ?>><i class="fa-solid fa-clock"></i> En attente</option>
+        <option value="valide" <?= $filtre === 'valide' ? 'selected' : '' ?>><i class="fa-solid fa-check"></i> Validés</option>
+        <option value="rejete" <?= $filtre === 'rejete' ? 'selected' : '' ?>><i class="fa-solid fa-times"></i> Rejetés</option>
       </select>
     </form>
 

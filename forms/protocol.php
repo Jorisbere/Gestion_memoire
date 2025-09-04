@@ -235,18 +235,18 @@ function confirmerDepot() {
     <?php endif; ?> -->
 
       <h2><i class="fa-solid fa-file"></i> Dépot de protocole</h2>
-      <label for="titre">Titre du protocole</label>
+      <label for="titre"><i class="fa-solid fa-heading"></i> Titre du protocole</label>
       <input type="text" name="titre" id="titre" required>
 
-      <label for="description">Description</label>
+      <label for="description"><i class="fa-solid fa-file-alt"></i> Description</label>
       <textarea name="description" id="description" rows="5" required></textarea>
 
-      <label for="fichier">Fichier PDF</label>
-      <small style="color:#666;">Taille maximale autorisée : 20 Mo</small>
+      <label for="fichier"><i class="fa-solid fa-file-pdf"></i> Fichier PDF</label>
+      <small style="color:#666;"><i class="fa-solid fa-info-circle"></i> Taille maximale autorisée : 20 Mo</small>
       <input type="file" name="fichier" id="fichier" accept=".pdf" required>
 
       <div class="button-container">
-        <button type="submit">Déposer</button>
+        <button type="submit"><i class="fa-solid fa-upload"></i> Déposer</button>
       </div>
       <!-- <div class="back-button">
         <a href="../accueil.php">← Retour au tableau de bord</a>

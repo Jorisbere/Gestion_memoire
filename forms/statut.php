@@ -195,7 +195,7 @@ function renderBadge($status) {
             </thead>
             <tbody>
                 <tr>
-                    <td>Protocole</td>
+                    <td><i class="fa-solid fa-file-alt"></i> Protocole</td>
                     <td><?= renderBadge($statut_protocole) ?></td>
                     <td>
                         <?php if ($statut_protocole === 'valide'): ?>
@@ -213,7 +213,7 @@ function renderBadge($status) {
                 </tr>
 
                 <tr>
-                    <td>Demande de soutenance</td>
+                    <td><i class="fa-solid fa-file-alt"></i> Demande de soutenance</td>
                     <td><?= renderBadge($statut_soutenance) ?></td>
                     <td>
                         <?php if ($statut_soutenance === 'valide'): ?>
@@ -231,7 +231,7 @@ function renderBadge($status) {
                 </tr>
 
                 <tr>
-                    <td>Mémoire final</td>
+                    <td><i class="fa-solid fa-file-alt"></i> Mémoire final</td>
                     <td><?= renderBadge($statut_memoire) ?></td>
                     <td>
                         <?php if ($statut_memoire === 'valide'): ?>
